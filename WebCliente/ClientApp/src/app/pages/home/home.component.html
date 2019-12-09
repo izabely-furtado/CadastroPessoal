@@ -1,0 +1,17 @@
+<section id="container">
+    <header class="header black-bg">
+        <app-top-bar (botao)="feedback($event)"></app-top-bar>
+    </header>
+    <aside>
+        <div class="nav-collapse">
+            <app-nav-menu></app-nav-menu>
+        </div>
+    </aside>
+    <section id="mainContent" [ngClass]="{'expandBody':atividade,'main':!atividade}">
+        <section class="wrapper">
+            <div class="row">
+                <router-outlet></router-outlet>
+            </div>
+        </section>
+    </section>
+</section>

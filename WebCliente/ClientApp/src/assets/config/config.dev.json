@@ -1,0 +1,11 @@
+{
+  "env": {
+    "name": "DEV"
+  },
+  "img": {
+
+  },
+  "apiServer": {
+    "apiUrl": "https://localhost:44377/v1/api/"
+  }
+}

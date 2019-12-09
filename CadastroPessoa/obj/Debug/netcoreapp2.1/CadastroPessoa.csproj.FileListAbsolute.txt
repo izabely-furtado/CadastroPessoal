@@ -1,0 +1,14 @@
+C:\Users\dev\sistemas\Cadastro_Pessoal\NusaPonto\bin\Debug\netcoreapp2.1\CadastroPessoa.deps.json
+C:\Users\dev\sistemas\Cadastro_Pessoal\NusaPonto\bin\Debug\netcoreapp2.1\CadastroPessoa.runtimeconfig.json
+C:\Users\dev\sistemas\Cadastro_Pessoal\NusaPonto\bin\Debug\netcoreapp2.1\CadastroPessoa.runtimeconfig.dev.json
+C:\Users\dev\sistemas\Cadastro_Pessoal\NusaPonto\bin\Debug\netcoreapp2.1\CadastroPessoa.dll
+C:\Users\dev\sistemas\Cadastro_Pessoal\NusaPonto\bin\Debug\netcoreapp2.1\CadastroPessoa.pdb
+C:\Users\dev\sistemas\Cadastro_Pessoal\NusaPonto\bin\Debug\netcoreapp2.1\NusaJwtCore.dll
+C:\Users\dev\sistemas\Cadastro_Pessoal\NusaPonto\bin\Debug\netcoreapp2.1\NusaJwtCore.pdb
+C:\Users\dev\sistemas\Cadastro_Pessoal\NusaPonto\obj\Debug\netcoreapp2.1\CadastroPessoa.csprojAssemblyReference.cache
+C:\Users\dev\sistemas\Cadastro_Pessoal\NusaPonto\obj\Debug\netcoreapp2.1\CadastroPessoa.csproj.CoreCompileInputs.cache
+C:\Users\dev\sistemas\Cadastro_Pessoal\NusaPonto\obj\Debug\netcoreapp2.1\CadastroPessoa.AssemblyInfoInputs.cache
+C:\Users\dev\sistemas\Cadastro_Pessoal\NusaPonto\obj\Debug\netcoreapp2.1\CadastroPessoa.AssemblyInfo.cs
+C:\Users\dev\sistemas\Cadastro_Pessoal\NusaPonto\obj\Debug\netcoreapp2.1\CadastroPessoa.csproj.CopyComplete
+C:\Users\dev\sistemas\Cadastro_Pessoal\NusaPonto\obj\Debug\netcoreapp2.1\CadastroPessoa.dll
+C:\Users\dev\sistemas\Cadastro_Pessoal\NusaPonto\obj\Debug\netcoreapp2.1\CadastroPessoa.pdb

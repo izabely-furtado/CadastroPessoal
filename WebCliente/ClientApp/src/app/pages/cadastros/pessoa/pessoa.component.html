@@ -1,0 +1,357 @@
+<!-- Tela pessoa cadastro -->
+<div class="row mt" [ngClass]="{ 'redimensiona':global.isExpanded }" *ngIf="novaPessoa">
+  <div class="col-lg-12">
+    <div class="white-panel form-panel">
+      <div class="white-header" style="justify-content: space-between; display:flex">
+        <div>
+          <h4 class="titulo_painel">Cadastro de pessoa</h4>
+        </div>
+        <div>
+          <button class="btn btn-sm btn-default btn_nav" (click)="back()">Voltar</button>
+        </div>
+      </div>
+      <form class="form-horizontal style-form">
+        <!-- status pessoa -->
+        <!--<div class="col-xs-12 col-lg-2" style="text-align: center;">
+    <img class="img_perfil" id="imgPessoa" [src]="imgSrc">
+  </div>-->
+        <!--<div class="col-xs-12 col-lg-10">
+    <div class="form-group col-xs-6">
+      <label class="acerta_w control-label">Status</label>
+      <div class="custom-control custom-switch col-lg-9" style="padding:0; padding-left: 15px; padding-top: 5px;">
+        <label class="switch switch-3d switch-info mr-3">
+          <input [(ngModel)]="pessoa.ativo" type="checkbox" class="switch-input custom-control-input"
+                 name="pessoa_ativo" id="pessoa_ativo" (change)="ativo = !ativo" checked>
+          <span class="switch-label"></span>
+          <span class="switch-handle"></span>
+        </label> &ensp; &ensp;
+        <label class="custom-control-label" for="pessoa_ativo" id="label_status" *ngIf="pessoa.ativo">Ativo</label>
+        <label class="custom-control-label" for="pessoa_ativo" id="label_status" *ngIf="!pessoa.ativo">Inativo</label>
+      </div>
+    </div>
+  </div>-->
+        <!-- nome e sobrenome -->
+        <div class="row col-xs-12 col-lg-12">
+          <div class="form-group col-xs-6">
+            <label class="acerta_w control-label"><b style="color:#aa0028">*</b>Nome</label>
+            <div class="col-lg-9">
+              <input [(ngModel)]="pessoa.nome" type="text" class="form-control" name="pessoa_nome">
+            </div>
+          </div>
+          <div class="form-group col-xs-6">
+            <label class="acerta_w control-label"><b style="color:#aa0028">*</b>Sobrenome</label>
+            <div class="col-lg-9">
+              <input [(ngModel)]="pessoa.sobrenome" type="text" class="form-control" name="pessoa_sobrenome">
+            </div>
+          </div>
+        </div>
+        <!-- CPF e data nascimento-->
+        <div class="row col-xs-12 col-lg-12">
+          <div class="form-group col-xs-6">
+            <label class="acerta_w control-label"><b style="color:#aa0028">*</b>CPF</label>
+            <div class="col-lg-9">
+              <input type="text" class="form-control" [(ngModel)]="pessoa.cpf" name="pessoa_cpf" id="pessoa_cpf" [dropSpecialCharacters]="false" mask="000.000.000-00" />
+            </div>
+          </div>
+          <div class="form-group col-xs-6">
+            <label class="acerta_w control-label" style="white-space: nowrap;"><b style="color:#aa0028">*</b>Data de nascimento</label>
+            <div class="col-lg-9">
+              <input [(ngModel)]="pessoa.data_nascimento_str" [dropSpecialCharacters]="false" mask="00/00/0000" type="text" class="form-control" name="data_nascimento">
+            </div>
+          </div>
+        </div>
+        <!-- contato -->
+        <div class="row col-xs-12 col-lg-12">
+          <div class="form-group col-xs-6">
+            <label class="acerta_w control-label">Telefone</label>
+            <div class="col-lg-9" style="display: flex;">
+              <input type="text" class="form-control" [(ngModel)]="pessoa.telefone1_ddd" style="width: 75px;" name="pessoa_ddd" id="pessoa_ddd" [dropSpecialCharacters]="false" mask="00" /> &emsp;
+              <input type="text" class="form-control" [(ngModel)]="pessoa.telefone1_numero" name="pessoa_telefone" id="pessoa_ddd" [dropSpecialCharacters]="false" mask="000000000" />
+            </div>
+          </div>
+          <div class="form-group col-xs-6">
+            <label class="acerta_w control-label">E-mail</label>
+            <div class="col-lg-9">
+              <input [(ngModel)]="pessoa.email" type="email" class="form-control" name="pessoa_email">
+            </div>
+          </div>
+        </div>
+        
+        <!--------------------------------------------- adicionando endereço --------------------------------------------------->
+        <!-- endereço -->
+        <div class="white-header" style="justify-content: space-between; display:flex; margin-bottom: 0px;">
+          <!-- rua e numero -->
+          <div class="row col-sm-12">
+            <div class="form-group col-xs-12" style="padding-bottom: 0px; padding-top: 15px;">
+              <label class="acerta_w control-label"><b style="color:#aa0028">*</b>Nome</label>
+              <div class="col-sm-11">
+                <input [(ngModel)]="endereco.nome" type="text" class="form-control" name="endereco_nome">
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="white-header" style="justify-content: space-between; display:flex; margin-bottom: 0px;">
+          <!-- busca cep e estado -->
+          <div class="row col-sm-12">
+            <div class="form-group col-xs-6" style="padding-bottom: 0px; padding-top: 15px;">
+              <label class="acerta_w control-label"><b style="color:#aa0028">*</b>CEP</label>
+              <div class="col-sm-9">
+                <div class="input-append" style="width: calc(100% - 35px)">
+                  <input type="text" class="form-control" [(ngModel)]="endereco.cep" size="9" name="endereco_cep" id="endereco_cep" [dropSpecialCharacters]="false" mask="00000-000" />
+                  <span class="input-group-btn add-on">
+                    <button class="btn btn-theme" type="button" (click)="pesquisacep(endereco.cep)"><i class="fa fa-search"></i></button>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-xs-6" style="padding-bottom: 0px; padding-top: 15px;">
+              <label class="acerta_w control-label"><b style="color:#aa0028">*</b>Estado</label>
+              <div class="col-sm-9">
+                <select class="form-control col-6 col-sm-8" [(ngModel)]="endereco.estado_uuid" id="endereco_estado_id" name="endereco_estado" required
+                        (change)="obterListaCidades(endereco.estado_uuid)">
+                  <option disabled selected>Selecione..</option>
+                  <option *ngFor="let e of listaEstados" [ngValue]="e.Id">
+                    {{e.nome}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="white-header" style="justify-content: space-between; display:flex; margin-bottom: 0px;">
+          <!-- municipio e bairro -->
+          <div class="row col-sm-12">
+            <div class="form-group col-xs-6" style="padding-bottom: 0px; padding-top: 15px;">
+              <label class="acerta_w control-label"><b style="color:#aa0028">*</b>Município</label>
+              <div class="col-sm-9">
+                <select class="form-control col-6 col-sm-8" [(ngModel)]="endereco.cidade_uuid" id="cidade" name="cidade" required>
+                  <option disabled selected>Selecione..</option>
+                  <option *ngFor="let e of listaCidades" [ngValue]="e.Id">
+                    {{e.nome}}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group col-xs-6" style="padding-bottom: 0px; padding-top: 15px;">
+              <label class="acerta_w control-label"><b style="color:#aa0028">*</b>Bairro</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="endereco.bairro" type="text" class="form-control" name="endereco_bairro">
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="white-header" style="justify-content: space-between; display:flex; margin-bottom: 0px;">
+          <!-- rua e numero -->
+          <div class="row col-sm-12">
+            <div class="form-group col-xs-6" style="padding-bottom: 0px; padding-top: 15px;">
+              <label class="acerta_w control-label"><b style="color:#aa0028">*</b>Rua</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="endereco.rua" type="text" class="form-control" name="endereco_rua">
+              </div>
+            </div>
+            <div class="form-group col-xs-6" style="padding-bottom: 0px; padding-top: 15px;">
+              <label class="acerta_w control-label">Número</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" [(ngModel)]="endereco.numero" name="endereco_numero" id="endereco_numero" [dropSpecialCharacters]="false" mask="000000000000" />
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="white-header" style="justify-content: space-between; display:flex;">
+          <!-- complemento -->
+          <div class="row col-sm-12">
+            <div class="form-group col-xs-6" style="padding-bottom: 0px; padding-top: 15px;">
+              <label class="acerta_w control-label">Complemento</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="endereco.complemento" type="text" class="form-control" name="endereco_complemento">
+              </div>
+            </div>
+            <div class="form-group col-xs-6" style="padding-bottom: 0px; padding-top: 15px; padding-left: 30px; padding-right: 30px;">
+              <button class="btn btn-theme" type="button" (click)="addEndereco(endereco)" style="width: 100%"><i class="fa fa-plus"></i> Adicionar Endereço</button>
+            </div>
+          </div>
+
+        </div>
+        <section id="no-more-tables" style="margin-top: 15px;">
+          <table class="table table-bordered table-striped table-condensed cf">
+            <thead class="cf">
+              <tr>
+                <th>Nome</th>
+                <th>Endereço</th>
+                <th style="width: 5%">Ação</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let ender of pessoa.enderecos">
+                <td data-title="Nome">{{ender.nome}}</td>
+                <td data-title="Endereco">{{ender.rua}}, {{ender.numero}} - {{ender.bairro}}, {{ender.cidade}} - {{ender.estado}}, {{ender.cep}} </td>
+                <td data-title="Ação">
+                  <button class="btn btn-sm btn-warning" title="Editar" (click)="editEndereco(ender)">
+                    <i class="fas fa-edit"></i>
+                  </button>
+                  <button class="btn btn-sm btn-danger" title="Remover" (click)="removeSetor(set)">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <div class="legenda" style="padding-top: 0px;">
+          <label class="control-label"><b>Legenda:</b></label> &nbsp;
+          <!-- item -->
+          <a class="btn btn-sm btn-warning cancelaHover">
+            <i class="fas fa-edit"></i>
+          </a>
+          &nbsp;
+          <label class="control-label">Editar</label>
+          <!-- separador -->
+          &emsp;|&emsp;
+          <a class="btn btn-sm btn-danger">
+            <i class="fas fa-times"></i>
+          </a>
+          &nbsp;
+          <label class="control-label">Remover</label>
+        </div>
+        <!-- botão de salvar -->
+        <div class="row text-center">
+          <button class="btn btn-theme btn-salvar" (click)="submit()">Salvar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Tela pessoa inicial -->
+<div class="row mt" [ngClass]="{ 'redimensiona':global.isExpanded }" *ngIf="!novaPessoa">
+  <div class="col-lg-12">
+    <div class="white-panel form-panel">
+      <div class="white-header" style="justify-content: space-between; display:flex">
+        <div>
+          <h4 class="titulo_painel">Lista de pessoas</h4>
+        </div>
+        <div>
+          <button class="btn btn-sm btn-primary btn_nav" (click)="add()">
+            Adicionar pessoa
+          </button>
+        </div>
+      </div>
+
+      <div class="row pesquisa_pessoa">
+        <table class="table table-bordered table-striped table-condensed cf" style="border: 0px;margin:0px;">
+          <tr style="background-color:transparent; border: 0px;">
+            <td style="border: 0px; width: 40%">
+              <select class="form-control" [(ngModel)]="tipoBusca.id" (change)="mudarTipoPesquisa()" id="busca_id" name="busca">
+                <option selected value="0">Tipo...</option>
+                <option *ngFor="let tipo of listaTiposBusca" [ngValue]="tipo.id">
+                  {{tipo.nome}}
+                </option>
+              </select>
+            </td>
+            <td style="border: 0px; width: 40%">
+              <input *ngIf="tipoBusca.id == 1 || tipoBusca.id == 0" [(ngModel)]="pesquisa.nome_pesquisa" mask="000.000.000-00" maxlength="15" type="text" class="form-control" name="pessoa_cpf" [disabled]="tipoBusca.id == 0">
+              <input *ngIf="tipoBusca.id == 2" [(ngModel)]="pesquisa.nome_pesquisa" type="text" class="form-control" name="pessoa_nome">
+            </td>
+            <td style="border: 0px;  width: 10%">
+              <button style="width:100%" (click)="atual(1, pesquisa)" class="btn btn-primary">Buscar</button>
+            </td>
+            <td style="border: 0px;  width: 10%">
+              <button style="width:100%" (click)="limparCampos(pesquisa,tipoBusca)" class="btn btn-primary">Limpar campos</button>
+            </td>
+          </tr>
+        </table>
+
+        <section id="no-more-tables">
+          <table class="table table-bordered table-striped table-condensed cf">
+            <thead class="cf">
+              <tr>
+                <th>CPF</th>
+                <th>Nome</th>
+                <th>Data nascimento</th>
+                <th>Telefone</th>
+                <th>E-mail</th>
+                <th>Ação</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let pessoa of listaPessoas">
+                <td data-title="CPF">{{formata_CPF(pessoa.cpf)}}</td>
+                <td data-title="Nome">{{pessoa.nome}} {{pessoa.sobrenome}}</td>
+                <td data-title="Data de admissão">{{getFormatterDate(pessoa.data_nascimento)}}</td>
+                <td data-title="Celular">({{pessoa.telefone_ddd}}){{pessoa.telefone_numero}}</td>
+                <td data-title="E-mail">{{pessoa.email}}</td>
+                <td data-title="Ação">
+                  <button class="btn btn-sm btn-warning" title="Editar" (click)="edit(pessoa)">
+                    <i class="fas fa-edit"></i>
+                  </button>
+                  <button class="btn btn-sm btn-success" title="Ativar" (click)="ativar(pessoa)" *ngIf="!pessoa.ativo">
+                    <i class="fas fa-power-off"></i>
+                  </button>
+                  <button class="btn btn-sm btn-danger" title="Desativar" (click)="desativar(pessoa)" *ngIf="pessoa.ativo">
+                    <i class="fas fa-power-off"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+        <!-- div para paginação -->
+        <div style="text-align: center">
+          <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+              <li class="page-item" [ngClass]="{ 'disabled':indice_selecionado == 1 }" style="cursor: pointer;">
+                <a class="page-link" (click)="primeira(pesquisa)"><i class="fa fa-backward"></i>&ensp;Primeira</a>
+              </li>
+              <li class="page-item" [ngClass]="{ 'disabled':indice_selecionado == 1 }" style="cursor: pointer;">
+                <a class="page-link" (click)="anterior(pesquisa)"><i class="fa fa-step-backward"></i>&ensp;Anterior</a>
+              </li>
+              <li class="page-item" *ngFor="let item of listaPaginas" [ngClass]="{ 'disabled':indice_selecionado == item }" style="cursor: pointer;">
+                <a class="page-link" *ngIf="indice_selecionado != item" (click)="atual(item, pesquisa)">{{item}}</a>
+                <a class="page-link" *ngIf="indice_selecionado == item">{{item}}</a>
+              </li>
+              <li class="page-item" [ngClass]="{ 'disabled':indice_selecionado == cabecalho.total_paginas || cabecalho.total_paginas == 0}" style="cursor: pointer;">
+                <a class="page-link" (click)="proxima(pesquisa)"><i class="fa fa-step-forward"></i>&ensp;Próxima</a>
+              </li>
+              <li class="page-item" [ngClass]="{ 'disabled':indice_selecionado == cabecalho.total_paginas || cabecalho.total_paginas == 0}" style="cursor: pointer;">
+                <a class="page-link" (click)="ultima(pesquisa)"><i class="fa fa-forward"></i>&ensp;Última</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <!-- fim paginação -->
+        <div class="legenda">
+          <label class="control-label">Legenda:</label> &nbsp;
+          <!-- item -->
+          <a class="btn btn-sm btn-warning cancelaHover">
+            <i class="fas fa-edit"></i>
+          </a>
+          &nbsp;
+          <label class="control-label">Editar</label>
+          <!-- separador -->
+          &emsp;|&emsp;
+          <!-- item -->
+          <a class="btn btn-sm btn-danger cancelaHover">
+            <i class="fas fa-power-off"></i>
+          </a>
+          &nbsp;
+          <label class="control-label">Desativar</label>
+          <!-- separador -->
+          &emsp;|&emsp;
+          <!-- item -->
+          <a class="btn btn-sm btn-success cancelaHover">
+            <i class="fas fa-power-off"></i>
+          </a>
+          &nbsp;
+          <label class="control-label">Ativar</label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ngx-loading [show]="loading" [config]="{ backdropBackgroundColour: 'rgba(255,255,255,0.3)', backdropBorderRadius: '10px',
+        primaryColour: '#0196ed', secondaryColour: '#23527c', tertiaryColour: '#0196ed' }"></ngx-loading>

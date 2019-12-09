@@ -1,0 +1,23 @@
+ul {
+    display: flex;
+    color: #fff;
+}
+
+ul span.info_topbar {
+    margin-top: 20px;
+}
+
+.txt_info_topbar {
+    white-space: nowrap;
+    width: 100%;
+}
+
+@media screen and (max-width: 799px) and (orientation: portrait) {
+    .info_topbar {
+        display: none;
+    }
+}
+
+:host {
+    cursor: pointer;
+}

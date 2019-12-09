@@ -1,0 +1,20 @@
+.showMenu {
+    margin-left: 0;
+    transition: .5s ease-in-out;
+}
+
+.hideMenu {
+    margin-left: -240px !important;
+    transition: .5s ease-in-out;
+}
+
+@media screen and (max-width: 768px) {
+    .hideMenu {
+        top: 0;
+        transition: .5s ease-in-out;
+    }
+    .showMenu {
+        top: -100% !important;
+        transition: .5s ease-in-out;
+    }
+}
