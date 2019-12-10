@@ -27,12 +27,12 @@
           "AutoMapper": "8.0.0",
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "6.0.0",
           "CadastroPessoa": "1.0.0",
+          "JwtCore": "1.0.0",
           "LinqKit.Core": "1.1.16",
           "Microsoft.AspNetCore.App": "2.1.1",
           "Microsoft.AspNetCore.Razor.Design": "2.1.2",
           "Microsoft.NETCore.App": "2.1.0",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "2.1.9",
-          "NusaJwtCore": "1.0.0",
           "Swashbuckle.AspNetCore": "4.0.1"
         },
         "runtime": {
@@ -4032,10 +4032,10 @@
       },
       "CadastroPessoa/1.0.0": {
         "dependencies": {
+          "JwtCore": "1.0.0",
           "LinqKit.Core": "1.1.16",
           "Microsoft.AspNetCore.All": "2.1.11",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "2.1.2",
-          "NusaJwtCore": "1.0.0",
           "RestSharp": "106.6.10"
         },
         "runtime": {
@@ -4045,15 +4045,15 @@
           "CadastroPessoa.dll": {}
         }
       },
-      "NusaJwtCore/1.0.0": {
+      "JwtCore/1.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.All": "2.1.11"
         },
         "runtime": {
-          "NusaJwtCore.dll": {}
+          "JwtCore.dll": {}
         },
         "compile": {
-          "NusaJwtCore.dll": {}
+          "JwtCore.dll": {}
         }
       },
       "Microsoft.AspNet.WebApi.Client/5.2.6": {
@@ -7080,7 +7080,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "NusaJwtCore/1.0.0": {
+    "JwtCore/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

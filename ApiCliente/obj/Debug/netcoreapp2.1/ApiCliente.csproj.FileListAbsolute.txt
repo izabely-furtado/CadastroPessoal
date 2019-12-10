@@ -57,8 +57,6 @@ C:\Users\dev\sistemas\Cadastro_Pessoal\ApiCliente\bin\Debug\netcoreapp2.1\ApiCli
 C:\Users\dev\sistemas\Cadastro_Pessoal\ApiCliente\bin\Debug\netcoreapp2.1\ApiCliente.runtimeconfig.dev.json
 C:\Users\dev\sistemas\Cadastro_Pessoal\ApiCliente\bin\Debug\netcoreapp2.1\ApiCliente.dll
 C:\Users\dev\sistemas\Cadastro_Pessoal\ApiCliente\bin\Debug\netcoreapp2.1\ApiCliente.pdb
-C:\Users\dev\sistemas\Cadastro_Pessoal\ApiCliente\bin\Debug\netcoreapp2.1\NusaJwtCore.dll
-C:\Users\dev\sistemas\Cadastro_Pessoal\ApiCliente\bin\Debug\netcoreapp2.1\NusaJwtCore.pdb
 C:\Users\dev\sistemas\Cadastro_Pessoal\ApiCliente\obj\Debug\netcoreapp2.1\ApiCliente.csprojAssemblyReference.cache
 C:\Users\dev\sistemas\Cadastro_Pessoal\ApiCliente\obj\Debug\netcoreapp2.1\ApiCliente.csproj.CoreCompileInputs.cache
 C:\Users\dev\sistemas\Cadastro_Pessoal\ApiCliente\obj\Debug\netcoreapp2.1\ApiCliente.RazorAssemblyInfo.cache
@@ -71,3 +69,5 @@ C:\Users\dev\sistemas\Cadastro_Pessoal\ApiCliente\obj\Debug\netcoreapp2.1\ApiCli
 C:\Users\dev\sistemas\Cadastro_Pessoal\ApiCliente\obj\Debug\netcoreapp2.1\ApiCliente.pdb
 C:\Users\dev\sistemas\Cadastro_Pessoal\ApiCliente\bin\Debug\netcoreapp2.1\CadastroPessoa.dll
 C:\Users\dev\sistemas\Cadastro_Pessoal\ApiCliente\bin\Debug\netcoreapp2.1\CadastroPessoa.pdb
+C:\Users\dev\sistemas\Cadastro_Pessoal\ApiCliente\bin\Debug\netcoreapp2.1\JwtCore.dll
+C:\Users\dev\sistemas\Cadastro_Pessoal\ApiCliente\bin\Debug\netcoreapp2.1\JwtCore.pdb

@@ -8,9 +8,9 @@
     ".NETCoreApp,Version=v2.1": {
       "CadastroPessoa/1.0.0": {
         "dependencies": {
+          "JwtCore": "1.0.0",
           "LinqKit.Core": "1.1.16",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "2.1.2",
-          "NusaJwtCore": "1.0.0",
           "RestSharp": "106.6.10"
         },
         "runtime": {
@@ -52,9 +52,9 @@
           }
         }
       },
-      "NusaJwtCore/1.0.0": {
+      "JwtCore/1.0.0": {
         "runtime": {
-          "NusaJwtCore.dll": {}
+          "JwtCore.dll": {}
         }
       }
     }
@@ -93,7 +93,7 @@
       "path": "restsharp/106.6.10",
       "hashPath": "restsharp.106.6.10.nupkg.sha512"
     },
-    "NusaJwtCore/1.0.0": {
+    "JwtCore/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
