@@ -48,7 +48,7 @@ namespace ApiCliente.Controllers
         }
 
         [HttpPut("{id}")]
-        public ActionResult<PessoaResponse> Editar(int uuid, [FromBody] PessoaRequest funcionarioRequest)
+        public ActionResult<PessoaResponse> Editar(string uuid, [FromBody] PessoaRequest funcionarioRequest)
         {
             Pessoa funcionario = _mapperRequest.Map<Pessoa>(funcionarioRequest);
             return Ok(_mapperResponse.Map<PessoaResponse>(PessoaService.Editar(uuid, funcionario)));

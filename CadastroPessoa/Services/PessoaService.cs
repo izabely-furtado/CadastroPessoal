@@ -48,6 +48,7 @@ namespace CadastroPessoa.Services
             {
                 pessoa_.Validar();
                 Pessoa _pessoa = ctx.Pessoas.Where(x => x.cpf.Equals(pessoa_.cpf)).FirstOrDefault();
+                
                 if (_pessoa != null)
                     throw new ApplicationBadRequestException(ApplicationBadRequestException.ERRO_AO_CADASTRAR_PESSOA);
 
@@ -57,15 +58,15 @@ namespace CadastroPessoa.Services
                 if (pessoa_.Email != null)
                     _pessoa.Email = pessoa_.Email.ToLower();
 
-                //foreach (PessoaEndereco item in _pessoa.PessoaEnderecos)
-                //{
-                //    item.Validar();
-                //    Endereco _endereco = ctx.Enderecos.Where(a => a.id == item.id_endereco).FirstOrDefault();
-                //    if (_endereco == null)
-                //        throw new ApplicationNotFoundException(ApplicationNotFoundException.ENDERECO_NAO_ENCONTRADO);
+                foreach (PessoaEndereco item in _pessoa.PessoaEnderecos)
+                {
+                    item.Validar();
+                    Endereco _endereco = ctx.Enderecos.Where(a => a.id == item.id_endereco).FirstOrDefault();
+                    if (_endereco == null)
+                        throw new ApplicationNotFoundException(ApplicationNotFoundException.ENDERECO_NAO_ENCONTRADO);
 
-                //    item.id_endereco = _endereco.id;
-                //}
+                    item.id_endereco = _endereco.id;
+                }
 
                 RequisicaoHTTP requisicao = new RequisicaoHTTP();
                 Pessoa pessoa = new Pessoa();
