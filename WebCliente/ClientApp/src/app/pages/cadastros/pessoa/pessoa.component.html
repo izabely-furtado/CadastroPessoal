@@ -272,12 +272,6 @@
                   <button class="btn btn-sm btn-warning" title="Editar" (click)="edit(pessoa)">
                     <i class="fas fa-edit"></i>
                   </button>
-                  <button class="btn btn-sm btn-success" title="Ativar" (click)="ativar(pessoa)" *ngIf="!pessoa.ativo">
-                    <i class="fas fa-power-off"></i>
-                  </button>
-                  <button class="btn btn-sm btn-danger" title="Desativar" (click)="desativar(pessoa)" *ngIf="pessoa.ativo">
-                    <i class="fas fa-power-off"></i>
-                  </button>
                 </td>
               </tr>
             </tbody>
@@ -315,22 +309,6 @@
           </a>
           &nbsp;
           <label class="control-label">Editar</label>
-          <!-- separador -->
-          &emsp;|&emsp;
-          <!-- item -->
-          <a class="btn btn-sm btn-danger cancelaHover">
-            <i class="fas fa-power-off"></i>
-          </a>
-          &nbsp;
-          <label class="control-label">Desativar</label>
-          <!-- separador -->
-          &emsp;|&emsp;
-          <!-- item -->
-          <a class="btn btn-sm btn-success cancelaHover">
-            <i class="fas fa-power-off"></i>
-          </a>
-          &nbsp;
-          <label class="control-label">Ativar</label>
         </div>
       </div>
     </div>
