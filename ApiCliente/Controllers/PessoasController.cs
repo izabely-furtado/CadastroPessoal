@@ -34,8 +34,8 @@ namespace ApiCliente.Controllers
             return Ok(_mapperResponse.Map<List<PessoaResponse>>(PessoaService.Listar()));
         }
 
-        [HttpGet("{id}")]
-        public ActionResult<PessoaResponse> Obter(int uuid)
+        [HttpGet("{cpf}")]
+        public ActionResult<PessoaResponse> Obter(string uuid)
         {
             return Ok(_mapperResponse.Map<PessoaResponse>(PessoaService.Obter(uuid)));
         }
@@ -53,6 +53,8 @@ namespace ApiCliente.Controllers
             Pessoa funcionario = _mapperRequest.Map<Pessoa>(funcionarioRequest);
             return Ok(_mapperResponse.Map<PessoaResponse>(PessoaService.Editar(uuid, funcionario)));
         }
+
+        
 
         //[HttpPatch("{id}/FotoPerfil")]
         //public ActionResult PatchFotoPerfil(string uuid, string foto_perfil)

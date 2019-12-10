@@ -14,12 +14,12 @@ namespace CadastroPessoa.Services
     public class PessoaService
     {
 
-        public static Pessoa Obter(int uuid)
+        public static Pessoa Obter(string uuid)
         {
             using (Repositorio ctx = new Repositorio())
             {
                 return ctx.Pessoas.Include(a => a.PessoaEnderecos).ThenInclude(a => a.Endereco)
-                    .Where(a => a.id == uuid).FirstOrDefault();
+                    .Where(a => a.cpf == uuid).First();
             }
         }
 
@@ -49,7 +49,7 @@ namespace CadastroPessoa.Services
                 pessoa_.Validar();
                 Pessoa _pessoa = ctx.Pessoas.Where(x => x.cpf.Equals(pessoa_.cpf)).FirstOrDefault();
                 if (_pessoa != null)
-                    throw new ApplicationBadRequestException(ApplicationBadRequestException.FUNCIONARIO_EXISTENTE);
+                    throw new ApplicationBadRequestException(ApplicationBadRequestException.ERRO_AO_CADASTRAR_PESSOA);
 
 
                 _pessoa.nome = _pessoa.nome.ToUpper();
@@ -164,6 +164,37 @@ namespace CadastroPessoa.Services
             }
         }
 
+
+        public static void Deletar(string pessoa_uuid)
+        {
+            List<Pessoa> erros = new List<Pessoa>();
+
+            using (Repositorio ctx = new Repositorio())
+            {
+
+
+                Pessoa _pessoa = ctx.Pessoas.Where(a => a.cpf== pessoa_uuid).FirstOrDefault();
+
+                if (_pessoa == null)
+                {
+                    return;
+                }
+
+                //List<PessoaEndereco> _enderecos_pessoa = ctx.Enderecos
+                //            .Where(x => escalas.Contains(x.Uuid.ToString())).ToList();
+
+                //List<int> listaIdsEscalas = _escalas.Select(a => a.Id).ToList();
+                //List<TrocaEscala> _trocas = ctx.TrocasEscala.Where(x => listaIdsEscalas.Contains(x.EscalaAtualId) || listaIdsEscalas.Contains(x.EscalaRequisitadaId)).ToList();
+
+                //List<EscalaIntervalo> _escala_intervalos = ctx.EscalaIntervalos.Where(x => listaIdsEscalas.Contains(x.EscalaId)).ToList();
+
+                
+
+                ctx.SaveChanges();
+                return;
+            }
+        }
+
         //public static bool PatchFotoPerfil(string uuid, string foto_perfil)
         //{
         //    using (Repositorio ctx = new Repositorio())
@@ -179,8 +210,8 @@ namespace CadastroPessoa.Services
         //    }
         //}
 
-        
 
-        
+
+
     }
 }

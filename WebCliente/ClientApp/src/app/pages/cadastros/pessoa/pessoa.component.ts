@@ -184,42 +184,6 @@ export class PessoaComponent implements OnInit {
       });
       return false;
     }
-    //if (pessoa.matricula == null || pessoa.matricula == "") {
-    //  Swal.fire({
-    //    type: 'error',
-    //    title: 'Oops...',
-    //    text: 'Insira a matricula!'
-    //  });
-    //  return false;
-    //}
-    if (pessoa.data_nascimento_str == null) {
-      Swal.fire({
-        type: 'error',
-        title: 'Oops...',
-        text: 'Insira a data de nascimento!'
-      });
-      return false;
-    }
-    let data_nascimento_ = new Date(pessoa.data_nascimento_str.split("/")[2] + "-" + pessoa.data_nascimento_str.split("/")[1] + "-" + pessoa.data_nascimento_str.split("/")[0] + "T00:00");
-    if (data_nascimento_ > new Date()) {
-      Swal.fire({
-        type: 'error',
-        title: 'Oops...',
-        text: 'Insira a data de nascimento válida!'
-      });
-      return false;
-    }
-
-    if (data_nascimento_.toDateString() == 'Invalid Date') {
-      Swal.fire({
-        type: 'error',
-        title: 'Oops...',
-        text: 'Insira a data de nascimento válida!'
-      });
-      return false;
-    }
-
-    pessoa.data_nascimento = data_nascimento_;
     
     if ((pessoa.telefone_ddd != null && pessoa.telefone_ddd != "") && (pessoa.telefone_ddd < 10 || pessoa.telefone_ddd > 99)) {
       Swal.fire({
@@ -237,7 +201,7 @@ export class PessoaComponent implements OnInit {
       });
       return false;
     }
-    
+    return true;
   }
 
   edit(pessoa) {
@@ -276,9 +240,9 @@ export class PessoaComponent implements OnInit {
   
   submit() {
     if (this.valida(this.pessoa)) {
-      this.pessoa.cep = this.pessoa.cep.replace(/\D/g, '');
+      //this.pessoa.cep = this.pessoa.cep.replace(/\D/g, '');
       this.loading = true;
-      if (this.pessoa.uuid != null) {
+      if (this.pessoa.id != null) {
         this.apiService.Put("Pessoas", this.pessoa).then(
           result => {
             this.back();
@@ -286,7 +250,7 @@ export class PessoaComponent implements OnInit {
             Swal.fire({
               type: 'success',
               title: 'Sucesso!',
-              text: 'Funcionário salvo com sucesso!'
+              text: 'Pessoa salvo com sucesso!'
             });
           },
           err => {
@@ -306,7 +270,7 @@ export class PessoaComponent implements OnInit {
             Swal.fire({
               type: 'success',
               title: 'Sucesso!',
-              text: 'Funcionário salvo com sucesso!'
+              text: 'Pessoa salvo com sucesso!'
             });
           },
           err => {
@@ -327,21 +291,22 @@ export class PessoaComponent implements OnInit {
 
   obterPessoa(pessoa) {
     this.loading = true;
-    this.apiService.GetOne("Pessoas", pessoa.uuid).then(
+    this.apiService.GetOne("Pessoas?uuid=", pessoa.cpf + "?uuid=" + pessoa.cpf).then(
       result => {
         this.pessoa = result;
-        this.pessoa.data_nascimento_str = this.global.dateFormater(result['data_nascimento']);
-        this.pessoa.admitido_em_str = this.global.dateFormater(result['admitido_em']);
-        this.loading = false;
-        if (this.pessoa.foto_perfil != null) {
-         // this.imgSrc = this.pessoa.foto_perfil_link;
-          let img = document.getElementById('imgPessoa');
-          img.onerror = function () {
-            document.getElementById('imgPessoa').setAttribute('src', '../../../../assets/img/default.jpg');
-          }
-        } else {
-         // this.imgSrc = '../../../../assets/img/default.jpg';
+        if (this.pessoa != null && this.pessoa.data_nascimento != null) {
+          this.pessoa.data_nascimento_str = this.global.dateFormater(result['data_nascimento']);
         }
+        this.loading = false;
+        //if (this.pessoa.foto_perfil != null) {
+         // this.imgSrc = this.pessoa.foto_perfil_link;
+          //let img = document.getElementById('imgPessoa');
+          //img.onerror = function () {
+          //  document.getElementById('imgPessoa').setAttribute('src', '../../../../assets/img/default.jpg');
+          //}
+        //} else {
+         // this.imgSrc = '../../../../assets/img/default.jpg';
+        //}
       },
       err => {
         this.loading = false;
