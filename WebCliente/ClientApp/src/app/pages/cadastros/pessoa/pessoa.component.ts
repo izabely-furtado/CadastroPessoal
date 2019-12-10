@@ -63,7 +63,7 @@ export class PessoaComponent implements OnInit {
   ngOnInit() {
     this.obterPessoas();
     this.obterListaEstados();
-    this.atual(1, {});
+   // this.atual(1);
 
   }
 
@@ -79,7 +79,7 @@ export class PessoaComponent implements OnInit {
   }
 
   back() {
-    this.atual(1, {});
+    this.atual(1);
     //this.obterPessoas();
     this.novaPessoa = false;
     //this.imgSrc = '../../../../assets/img/default.jpg';
@@ -221,7 +221,7 @@ export class PessoaComponent implements OnInit {
 
     pessoa.data_nascimento = data_nascimento_;
     
-    if ((pessoa.telefone1_ddd != null && pessoa.telefone1_ddd != "") && (pessoa.telefone1_ddd < 10 || pessoa.telefone1_ddd > 99)) {
+    if ((pessoa.telefone_ddd != null && pessoa.telefone_ddd != "") && (pessoa.telefone_ddd < 10 || pessoa.telefone_ddd > 99)) {
       Swal.fire({
         type: 'error',
         title: 'Oops...',
@@ -229,14 +229,14 @@ export class PessoaComponent implements OnInit {
       });
       return false;
     }
-    //if (pessoa.telefone1_numero == null || pessoa.telefone1_numero <= 0) {
-    //  Swal.fire({
-    //    type: 'error',
-    //    title: 'Oops...',
-    //    text: 'Insira o telefone!'
-    //  });
-    //  return false;
-    //}
+    if (pessoa.telefone_numero == null || pessoa.telefone_numero <= 0) {
+      Swal.fire({
+        type: 'error',
+        title: 'Oops...',
+        text: 'Insira o telefone!'
+      });
+      return false;
+    }
     
   }
 
@@ -355,58 +355,12 @@ export class PessoaComponent implements OnInit {
 
   }
 
-  desativar(pessoa) {
-    this.loading = true;
-    this.apiService.desativar("Pessoas", pessoa.uuid)
-      .then(
-        result => {
-          this.loading = false;
-          this.atual(1, {});
-          //this.obterPessoas();
-        },
-        err => {
-          this.loading = false;
-          Swal.fire({
-            type: 'error',
-            title: 'Oops...',
-            text: err.error.mensagem
-          });
-        }
-      );
-  }
-
-  ativar(pessoa) {
-    this.loading = true;
-    this.apiService.ativar("Pessoas", pessoa.uuid)
-      .then(
-        result => {
-          this.loading = false;
-          this.atual(1, {});
-          //this.obterPessoas();
-        },
-        err => {
-          this.loading = false;
-          Swal.fire({
-            type: 'error',
-            title: 'Oops...',
-            text: err.error.mensagem
-          });
-        }
-      );
-  }
-
   formata_CPF(cpf) {
     return this.global.formataCPF(cpf);
   }
 
   ///paginação
-  obterListaPessoas(indice, pesquisa) {
-    let nomePesquisa = '';
-
-    if (pesquisa == null) {
-      pesquisa = {};
-    }
-   
+  obterListaPessoas(indice) {
     this.loading = true;
     var resultado: any;
     //this.apiService.Get("Pessoas?pagina=" + indice).then(
@@ -438,41 +392,41 @@ export class PessoaComponent implements OnInit {
     );
   }
 
-  primeira(pesquisa) {
+  primeira() {
     if (this.indice_selecionado != 1) {
       this.indice_selecionado = 1;
-      this.obterListaPessoas(this.indice_selecionado, pesquisa);
+      this.obterListaPessoas(this.indice_selecionado);
     }
   }
 
-  anterior(pesquisa) {
+  anterior() {
     if (this.indice_selecionado != 1) {
       this.indice_selecionado = this.indice_selecionado - 1;
-      this.obterListaPessoas(this.indice_selecionado, pesquisa);
+      this.obterListaPessoas(this.indice_selecionado);
     }
   }
 
-  atual(indice, pesquisa) {
+  atual(indice) {
     if (this.indice_selecionado != indice) {
       this.indice_selecionado = indice;
-      this.obterListaPessoas(this.indice_selecionado, pesquisa);
+      this.obterListaPessoas(this.indice_selecionado);
     } else {
       this.indice_selecionado = indice;
-      this.obterListaPessoas(this.indice_selecionado, pesquisa);
+      this.obterListaPessoas(this.indice_selecionado);
     }
   }
 
-  proxima(pesquisa) {
+  proxima() {
     if (this.indice_selecionado != this.cabecalho.total_paginas) {
       this.indice_selecionado = this.indice_selecionado + 1;
-      this.obterListaPessoas(this.indice_selecionado, pesquisa);
+      this.obterListaPessoas(this.indice_selecionado);
     }
   }
 
-  ultima(pesquisa) {
+  ultima() {
     if (this.indice_selecionado != this.cabecalho.total_paginas) {
       this.indice_selecionado = this.cabecalho.total_paginas;
-      this.obterListaPessoas(this.indice_selecionado, pesquisa);
+      this.obterListaPessoas(this.indice_selecionado);
     }
   }
 

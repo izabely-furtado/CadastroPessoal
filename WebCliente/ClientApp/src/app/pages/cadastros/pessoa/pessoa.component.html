@@ -282,20 +282,20 @@
           <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center">
               <li class="page-item" [ngClass]="{ 'disabled':indice_selecionado == 1 }" style="cursor: pointer;">
-                <a class="page-link" (click)="primeira(pesquisa)"><i class="fa fa-backward"></i>&ensp;Primeira</a>
+                <a class="page-link" (click)="primeira()"><i class="fa fa-backward"></i>&ensp;Primeira</a>
               </li>
               <li class="page-item" [ngClass]="{ 'disabled':indice_selecionado == 1 }" style="cursor: pointer;">
-                <a class="page-link" (click)="anterior(pesquisa)"><i class="fa fa-step-backward"></i>&ensp;Anterior</a>
+                <a class="page-link" (click)="anterior()"><i class="fa fa-step-backward"></i>&ensp;Anterior</a>
               </li>
               <li class="page-item" *ngFor="let item of listaPaginas" [ngClass]="{ 'disabled':indice_selecionado == item }" style="cursor: pointer;">
-                <a class="page-link" *ngIf="indice_selecionado != item" (click)="atual(item, pesquisa)">{{item}}</a>
+                <a class="page-link" *ngIf="indice_selecionado != item" (click)="atual(item)">{{item}}</a>
                 <a class="page-link" *ngIf="indice_selecionado == item">{{item}}</a>
               </li>
               <li class="page-item" [ngClass]="{ 'disabled':indice_selecionado == cabecalho.total_paginas || cabecalho.total_paginas == 0}" style="cursor: pointer;">
-                <a class="page-link" (click)="proxima(pesquisa)"><i class="fa fa-step-forward"></i>&ensp;Próxima</a>
+                <a class="page-link" (click)="proxima()"><i class="fa fa-step-forward"></i>&ensp;Próxima</a>
               </li>
               <li class="page-item" [ngClass]="{ 'disabled':indice_selecionado == cabecalho.total_paginas || cabecalho.total_paginas == 0}" style="cursor: pointer;">
-                <a class="page-link" (click)="ultima(pesquisa)"><i class="fa fa-forward"></i>&ensp;Última</a>
+                <a class="page-link" (click)="ultima()"><i class="fa fa-forward"></i>&ensp;Última</a>
               </li>
             </ul>
           </nav>
