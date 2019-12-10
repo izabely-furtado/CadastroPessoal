@@ -14,7 +14,7 @@ namespace CadastroPessoa.Entities
         public string telefone_ddd { get; set; }
         public string telefone_numero { get; set; }
         public string cpf { get; set; }
-        public DateTime data_nascimento { get; set; }
+        public DateTime? data_nascimento { get; set; }
         public string Email { get; set; }
 
         public virtual List<PessoaEndereco> PessoaEnderecos { get; set; }

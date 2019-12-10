@@ -6,6 +6,6 @@ namespace CadastroPessoa
     public class Entity
     {
         [Key]
-        public int Id { get; set; }
+        public int id { get; set; }
     }
 }

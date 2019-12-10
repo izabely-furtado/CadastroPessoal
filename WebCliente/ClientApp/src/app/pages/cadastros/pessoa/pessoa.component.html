@@ -11,25 +11,7 @@
         </div>
       </div>
       <form class="form-horizontal style-form">
-        <!-- status pessoa -->
-        <!--<div class="col-xs-12 col-lg-2" style="text-align: center;">
-          <img class="img_perfil" id="imgPessoa" [src]="imgSrc">
-        </div>-->
-        <!--<div class="col-xs-12 col-lg-10">
-          <div class="form-group col-xs-6">
-            <label class="acerta_w control-label">Status</label>
-            <div class="custom-control custom-switch col-lg-9" style="padding:0; padding-left: 15px; padding-top: 5px;">
-              <label class="switch switch-3d switch-info mr-3">
-                <input [(ngModel)]="pessoa.ativo" type="checkbox" class="switch-input custom-control-input"
-                       name="pessoa_ativo" id="pessoa_ativo" (change)="ativo = !ativo" checked>
-                <span class="switch-label"></span>
-                <span class="switch-handle"></span>
-              </label> &ensp; &ensp;
-              <label class="custom-control-label" for="pessoa_ativo" id="label_status" *ngIf="pessoa.ativo">Ativo</label>
-              <label class="custom-control-label" for="pessoa_ativo" id="label_status" *ngIf="!pessoa.ativo">Inativo</label>
-            </div>
-          </div>
-        </div>-->
+       
         <!-- nome e sobrenome -->
         <div class="row col-xs-12 col-lg-12">
           <div class="form-group col-xs-6">
@@ -111,7 +93,7 @@
                 <select class="form-control col-6 col-sm-8" [(ngModel)]="endereco.estado_uuid" id="endereco_estado_id" name="endereco_estado" required
                         (change)="obterListaCidades(endereco.estado_uuid)">
                   <option disabled selected>Selecione..</option>
-                  <option *ngFor="let e of listaEstados" [ngValue]="e.Id">
+                  <option *ngFor="let e of listaEstados" [ngValue]="e.id">
                     {{e.nome}}
                   </option>
                 </select>
@@ -127,7 +109,7 @@
               <div class="col-sm-9">
                 <select class="form-control col-6 col-sm-8" [(ngModel)]="endereco.cidade_uuid" id="cidade" name="cidade" required>
                   <option disabled selected>Selecione..</option>
-                  <option *ngFor="let e of listaCidades" [ngValue]="e.Id">
+                  <option *ngFor="let e of listaCidades" [ngValue]="e.id">
                     {{e.nome}}
                   </option>
                 </select>

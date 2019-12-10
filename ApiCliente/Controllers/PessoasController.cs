@@ -22,11 +22,11 @@ namespace ApiCliente.Controllers
            : base(mapper, appSettings, tokenSetting) { }
 
         [HttpGet]
-        public IActionResult Listar(int? pagina, string query, string endereco)
+        public IActionResult Listar(int? pagina)
         {
             if (pagina != null && pagina > 0)
             {
-                PaginacaoModel _paginacao = PessoaService.ListarPagina((int)pagina, query, endereco);
+                PaginacaoModel _paginacao = PessoaService.ListarPagina((int)pagina);
                 _paginacao.conteudo = _mapperResponse.Map<List<PessoaResponse>>(_paginacao.conteudo);
                 return Ok(_paginacao);
             }

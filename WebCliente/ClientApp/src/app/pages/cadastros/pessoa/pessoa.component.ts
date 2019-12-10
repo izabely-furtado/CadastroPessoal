@@ -32,16 +32,12 @@ export class PessoaComponent implements OnInit {
   filtro: any = {};
   pessoa: any = {};
   endereco: any = {};
-  carga_horaria: any = null;
   loading = false;
   visualizando: any = false;
   listaPessoas: any = [];
-  listaTiposBusca: any = [];
   listaEstados: any = [];
   listaCidades: any = [];
-  tipoBusca: any = { id: 0 };
   //imgSrc: any = '../../../../assets/img/default.jpg';
-  pesquisa: any = { unidade: 0, cargo: 0, vinculo: 0 };
   element: HTMLImageElement;
 
   currentUser: any = {};
@@ -65,21 +61,10 @@ export class PessoaComponent implements OnInit {
   }
 
   ngOnInit() {
-    //this.obterPessoas();
-    //this.obterListaEstados();
-    //this.atual(1, {});
-    //this.obterTiposBusca();
+    this.obterPessoas();
+    this.obterListaEstados();
+    this.atual(1, {});
 
-  }
-
-
-  obterTiposBusca() {
-    this.listaTiposBusca = [
-      { id: 1, nome: 'CPF' },
-      { id: 2, nome: 'Nome' },
-      //pesquisar por data d aniversároo?
-
-    ];
   }
 
   getFormatterDate(item) {
@@ -90,7 +75,6 @@ export class PessoaComponent implements OnInit {
     this.novaPessoa = true;
     this.pessoa = {};
     this.endereco = {};
-    this.carga_horaria = null;
     this.pessoa.ativo = true;
   }
 
@@ -101,39 +85,8 @@ export class PessoaComponent implements OnInit {
     //this.imgSrc = '../../../../assets/img/default.jpg';
     this.pessoa = {};
     this.endereco = {};
-    this.carga_horaria = null;
   }
-
-  addSetor(unidade, setor) {
-    if (unidade == null) {
-      Swal.fire({
-        type: 'error',
-        title: 'Oops...',
-        text: 'Insira o unidade!'
-      });
-      return;
-    }
-    if (setor == null) {
-      Swal.fire({
-        type: 'error',
-        title: 'Oops...',
-        text: 'Insira o setor!'
-      });
-      return;
-    }
-
-    if (this.pessoa.setores == null) {
-      this.pessoa.setores = [];
-    }
-    this.pessoa.setores.push({
-      unidade_uuid: unidade.uuid,
-      unidade_nome: unidade.nome,
-      setor_uuid: setor.uuid,
-      setor_nome: setor.nome,
-      ativo: setor.ativo
-    });
-  }
-
+  
   addEndereco(endereco) {
     if (endereco == null) {
       Swal.fire({
@@ -302,28 +255,21 @@ export class PessoaComponent implements OnInit {
   }
 
   obterPessoas() {
-
-    this.listaPessoas = [];
-
-
-
-
-
-    //this.loading = true;
-    //this.apiService.Get("Pessoas").then(
-    //  result => {
-    //    this.listaPessoas = result;
-    //    this.loading = false;
-    //  },
-    //  err => {
-    //    this.loading = false;
-    //    Swal.fire({
-    //      type: 'error',
-    //      title: 'Oops...',
-    //      text: err.error.mensagem
-    //    });
-    //  }
-    //);
+    this.loading = true;
+    this.apiService.Get("Pessoas").then(
+      result => {
+        this.listaPessoas = result;
+        this.loading = false;
+      },
+      err => {
+        this.loading = false;
+        Swal.fire({
+          type: 'error',
+          title: 'Oops...',
+          text: err.error.mensagem
+        });
+      }
+    );
 
   }
 
@@ -460,27 +406,11 @@ export class PessoaComponent implements OnInit {
     if (pesquisa == null) {
       pesquisa = {};
     }
-    if (this.tipoBusca.id == 1 && (pesquisa.nome_pesquisa != "" && pesquisa.nome_pesquisa != null)) {
-      nomePesquisa = pesquisa.nome_pesquisa;
-    }
-
-    if (this.tipoBusca.id == 2 && (pesquisa.nome_pesquisa != "" && pesquisa.nome_pesquisa != null)) {
-      nomePesquisa = pesquisa.nome_pesquisa;
-    }
-    if (this.tipoBusca.id == 3 && (pesquisa.nome_pesquisa != "" && pesquisa.nome_pesquisa != null)) {
-      nomePesquisa = pesquisa.nome_pesquisa;
-    }
-    if (this.tipoBusca.id == 4 && (pesquisa.nome_pesquisa != "" && pesquisa.nome_pesquisa != null)) {
-      let dia = pesquisa.nome_pesquisa.substring(0, 2);
-      let mes = pesquisa.nome_pesquisa.substring(2, 4);
-      let ano = pesquisa.nome_pesquisa.substring(4, 8);
-      nomePesquisa = ano + "-" + mes + "-" + dia;
-    }
-
+   
     this.loading = true;
     var resultado: any;
     //this.apiService.Get("Pessoas?pagina=" + indice).then(
-    this.apiService.Get("Pessoas?ativo=" + "" + "&pagina=" + indice + "&query=" + nomePesquisa + "&unidade=" + pesquisa.unidade + "&setor=" + pesquisa.setor + "&cargo=" + pesquisa.cargo + "&vinculo=" + pesquisa.vinculo).then(
+    this.apiService.Get("Pessoas?pagina=" + indice).then(
       result => {
         resultado = result;
         this.listaPessoas = resultado.conteudo;
@@ -546,16 +476,10 @@ export class PessoaComponent implements OnInit {
     }
   }
 
-  mudarTipoPesquisa() {
-    this.pesquisa.nome_pesquisa = "";
-  }
-
-  limparCampos(pesquisa, tipoBusca) {
+ 
+  limparCampos() {
     this.indice_selecionado = "";
-    this.pesquisa.nome_pesquisa = "";
-    this.pesquisa.unidade = "";
-    this.tipoBusca.id = 0;
-    //this.listaSetores = null;
+    this.filtro = {};
   }
 
   //BUCANDO CEP
@@ -616,7 +540,7 @@ export class PessoaComponent implements OnInit {
   obterListaCidades(estado_id) {
     if (estado_id != null) {
       this.loading = true;
-      this.apiService.Get("Estados/" + estado_id + "/Municipios").then(
+      this.apiService.Get("Estados/" + estado_id + "/Cidades?uuid=" + estado_id).then(
         result => {
           this.listaCidades = result;
           this.loading = false;

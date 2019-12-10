@@ -19,7 +19,7 @@ namespace CadastroPessoa.Services
             using (Repositorio ctx = new Repositorio())
             {
                 return ctx.Pessoas.Include(a => a.PessoaEnderecos).ThenInclude(a => a.Endereco)
-                    .Where(a => a.Id == uuid).FirstOrDefault();
+                    .Where(a => a.id == uuid).FirstOrDefault();
             }
         }
 
@@ -27,10 +27,10 @@ namespace CadastroPessoa.Services
         {
             using (Repositorio ctx = new Repositorio())
             {
-                Pessoa _pessoa = ctx.Pessoas.Where(a => a.Id == pessoa_uuid).FirstOrDefault();
+                Pessoa _pessoa = ctx.Pessoas.Where(a => a.id == pessoa_uuid).FirstOrDefault();
                 return ctx.Pessoas
                     .Include(a => a.PessoaEnderecos).ThenInclude(a => a.Endereco)
-                    .Where(a => a.Id == uuid).FirstOrDefault();
+                    .Where(a => a.id == uuid).FirstOrDefault();
             }
         }
 
@@ -60,11 +60,11 @@ namespace CadastroPessoa.Services
                 foreach (PessoaEndereco item in _pessoa.PessoaEnderecos)
                 {
                     item.Validar();
-                    Endereco _endereco = ctx.Enderecos.Where(a => a.Id == item.id_endereco).FirstOrDefault();
+                    Endereco _endereco = ctx.Enderecos.Where(a => a.id == item.id_endereco).FirstOrDefault();
                     if (_endereco == null)
                         throw new ApplicationNotFoundException(ApplicationNotFoundException.ENDERECO_NAO_ENCONTRADO);
 
-                    item.id_endereco = _endereco.Id;
+                    item.id_endereco = _endereco.id;
                 }
 
                 RequisicaoHTTP requisicao = new RequisicaoHTTP();
@@ -81,7 +81,7 @@ namespace CadastroPessoa.Services
 
                 if (pessoaRetorno == null)
                     throw new ApplicationBadRequestException(ApplicationBadRequestException.ERRO_AO_CADASTRAR_PESSOA);
-                pessoa.Id = pessoa.Id;
+                pessoa.id = pessoa.id;
                 //pessoa.FotoPerfil = pessoaRetorno.foto_perfil;
                 ctx.Pessoas.Add(pessoa);
                 ctx.SaveChanges();
@@ -95,11 +95,11 @@ namespace CadastroPessoa.Services
             {
                 Pessoa _pessoa = ctx.Pessoas
                     .Include(a => a.PessoaEnderecos).ThenInclude(a => a.Endereco)
-                    .Where(x => x.Id == uuid).FirstOrDefault();
+                    .Where(x => x.id == uuid).FirstOrDefault();
                 if (_pessoa == null)
                     throw new ApplicationNotFoundException(ApplicationNotFoundException.FUNCIONARIO_NAO_ENCONTRADO);
 
-                Pessoa _pessoa1 = ctx.Pessoas.Where(x => x.Id != uuid && x.cpf.Equals(pessoa.cpf)).FirstOrDefault();
+                Pessoa _pessoa1 = ctx.Pessoas.Where(x => x.id != uuid && x.cpf.Equals(pessoa.cpf)).FirstOrDefault();
                 if (_pessoa1 != null)
                     throw new ApplicationBadRequestException(ApplicationBadRequestException.CPF_EXISTENTE);
 
@@ -123,12 +123,12 @@ namespace CadastroPessoa.Services
                 foreach (PessoaEndereco item in pessoa.PessoaEnderecos)
                 {
                     item.Validar();
-                    Endereco _endereco = ctx.Enderecos.Where(a => a.Id == item.id_endereco).FirstOrDefault();
+                    Endereco _endereco = ctx.Enderecos.Where(a => a.id == item.id_endereco).FirstOrDefault();
 
                     if (_endereco == null)
                         throw new ApplicationNotFoundException(ApplicationNotFoundException.ENDERECO_NAO_ENCONTRADO);
 
-                    item.id_endereco = _endereco.Id;
+                    item.id_endereco = _endereco.id;
                     _pessoa.PessoaEnderecos.Add(item);
                 }
 
@@ -137,7 +137,7 @@ namespace CadastroPessoa.Services
             }
         }
 
-        public static PaginacaoModel ListarPagina(int pagina, string cpf_nome_matricula_data, string endereco)
+        public static PaginacaoModel ListarPagina(int pagina)
         {
             using (Repositorio ctx = new Repositorio())
             {
@@ -149,27 +149,8 @@ namespace CadastroPessoa.Services
 
                 ExpressionStarter<Pessoa> query = PredicateBuilder.New<Pessoa>(true);
 
-                if (!String.IsNullOrEmpty(cpf_nome_matricula_data))
-                    try
-                    {
-                        DateTime data_admissao = Convert.ToDateTime(cpf_nome_matricula_data);
-                    }
-                    catch (Exception)
-                    {
-                        cpf_nome_matricula_data = cpf_nome_matricula_data.Replace(".", "").Replace("-", "").Replace(";", "");
-                        query.And(a => a.cpf == cpf_nome_matricula_data || a.nome.ToUpper().Contains(cpf_nome_matricula_data.ToUpper()));
-                    }
-
                 List<Pessoa> pessoas = new List<Pessoa>();
 
-                if (!String.IsNullOrEmpty(endereco)) { 
-                    query.And(a => a.PessoaEnderecos.Select(n => n.Endereco.nome).Contains(endereco));
-
-                    _pagina.quantidade_total = ctx.Pessoas.Where(query).Count();
-                    pessoas = ctx.Pessoas
-                        .Where(query)
-                    .OrderBy(x => x.nome).Skip(inicio).Take(_pagina.quantidade_pagina).ToList();
-                }
                 _pagina.total_paginas = Convert.ToInt32(Math.Ceiling((double)_pagina.quantidade_total / _pagina.quantidade_pagina));
                 _pagina.conteudo = pessoas;
 
