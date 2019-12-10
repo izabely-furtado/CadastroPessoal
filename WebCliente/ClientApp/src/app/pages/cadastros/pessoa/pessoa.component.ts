@@ -291,7 +291,7 @@ export class PessoaComponent implements OnInit {
 
   obterPessoa(pessoa) {
     this.loading = true;
-    this.apiService.GetOne("Pessoas?uuid=", pessoa.cpf + "?uuid=" + pessoa.cpf).then(
+    this.apiService.GetOne("Pessoas", pessoa.cpf + "?uuid=" + pessoa.cpf).then(
       result => {
         this.pessoa = result;
         if (this.pessoa != null && this.pessoa.data_nascimento != null) {

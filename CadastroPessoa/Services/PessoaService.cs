@@ -51,37 +51,35 @@ namespace CadastroPessoa.Services
                 if (_pessoa != null)
                     throw new ApplicationBadRequestException(ApplicationBadRequestException.ERRO_AO_CADASTRAR_PESSOA);
 
+                _pessoa = new Pessoa();
+                _pessoa.nome = pessoa_.nome;
+                _pessoa.sobrenome = pessoa_.sobrenome;
+                if (pessoa_.Email != null)
+                    _pessoa.Email = pessoa_.Email.ToLower();
 
-                _pessoa.nome = _pessoa.nome.ToUpper();
-                _pessoa.sobrenome = _pessoa.sobrenome.ToUpper();
-                if (_pessoa.Email != null)
-                    _pessoa.Email = _pessoa.Email.ToLower();
+                //foreach (PessoaEndereco item in _pessoa.PessoaEnderecos)
+                //{
+                //    item.Validar();
+                //    Endereco _endereco = ctx.Enderecos.Where(a => a.id == item.id_endereco).FirstOrDefault();
+                //    if (_endereco == null)
+                //        throw new ApplicationNotFoundException(ApplicationNotFoundException.ENDERECO_NAO_ENCONTRADO);
 
-                foreach (PessoaEndereco item in _pessoa.PessoaEnderecos)
-                {
-                    item.Validar();
-                    Endereco _endereco = ctx.Enderecos.Where(a => a.id == item.id_endereco).FirstOrDefault();
-                    if (_endereco == null)
-                        throw new ApplicationNotFoundException(ApplicationNotFoundException.ENDERECO_NAO_ENCONTRADO);
-
-                    item.id_endereco = _endereco.id;
-                }
+                //    item.id_endereco = _endereco.id;
+                //}
 
                 RequisicaoHTTP requisicao = new RequisicaoHTTP();
                 Pessoa pessoa = new Pessoa();
-                pessoa.nome = pessoa.nome;
-                pessoa.sobrenome = pessoa.sobrenome;
-                pessoa.cpf = pessoa.cpf;
-                pessoa.data_nascimento = pessoa.data_nascimento;
+                pessoa.nome = pessoa_.nome;
+                pessoa.sobrenome = pessoa_.sobrenome;
+                pessoa.cpf = pessoa_.cpf;
+                pessoa.telefone_ddd = pessoa_.telefone_ddd;
+                pessoa.telefone_numero = pessoa_.telefone_numero;
+                pessoa.data_nascimento = pessoa_.data_nascimento;
 
-
-                string pessoaStr = JsonConvert.SerializeObject(pessoa);
-                string pessoaEnvio = requisicao.Post("Pessoas", pessoaStr);
-                Pessoa pessoaRetorno = JsonConvert.DeserializeObject<Pessoa>(pessoaEnvio);
-
-                if (pessoaRetorno == null)
-                    throw new ApplicationBadRequestException(ApplicationBadRequestException.ERRO_AO_CADASTRAR_PESSOA);
-                pessoa.id = pessoa.id;
+                
+                //if (pessoaRetorno == null)
+                //    throw new ApplicationBadRequestException(ApplicationBadRequestException.ERRO_AO_CADASTRAR_PESSOA);
+                //pessoa.id = pessoa.id;
                 //pessoa.FotoPerfil = pessoaRetorno.foto_perfil;
                 ctx.Pessoas.Add(pessoa);
                 ctx.SaveChanges();
