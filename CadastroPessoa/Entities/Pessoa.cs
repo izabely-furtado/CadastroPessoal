@@ -17,7 +17,7 @@ namespace CadastroPessoa.Entities
         public DateTime? data_nascimento { get; set; }
         public string Email { get; set; }
 
-        public virtual List<PessoaEndereco> PessoaEnderecos { get; set; }
+        public virtual List<PessoaEndereco> enderecos { get; set; }
 
         //public string FotoPerfil { get; set; }
 
@@ -45,27 +45,27 @@ namespace CadastroPessoa.Entities
                 this.telefone_numero = this.telefone_numero.Replace("-", "");
             }
 
-            if (!String.IsNullOrEmpty(this.Email)) {
-                if (!Validador.ValidarEmail(this.Email))
-                    throw new ApplicationBadRequestException(ApplicationBadRequestException.EMAIL_INVALIDO);
-            }
+            //if (!String.IsNullOrEmpty(this.Email)) {
+            //    if (!Validador.ValidarEmail(this.Email))
+            //        throw new ApplicationBadRequestException(ApplicationBadRequestException.EMAIL_INVALIDO);
+            //}
 
             this.cpf = this.cpf.Replace("-", "");
             this.cpf = this.cpf.Replace(".", "");
-            
-            //if (this.PessoaEnderecos != null && this.PessoaEnderecos.Count > 0)
-            //{
-            //    List<PessoaEndereco> lista = new List<PessoaEndereco>();
-            //    foreach (var item in this.PessoaEnderecos)
-            //    {
-            //        PessoaEndereco pessoaEndereco = lista.Where(x => x.id_endereco == item.id_endereco).FirstOrDefault();
-            //        if (pessoaEndereco == null)
-            //        {
-            //            lista.Add(item);
-            //        }
-            //    }
-            //    this.PessoaEnderecos = lista;
-            //}
+
+            if (this.enderecos != null && this.enderecos.Count > 0)
+            {
+                List<PessoaEndereco> lista = new List<PessoaEndereco>();
+                foreach (var item in this.enderecos)
+                {
+                    PessoaEndereco pessoaEndereco = lista.Where(x => x.id_endereco == item.id_endereco).FirstOrDefault();
+                    if (pessoaEndereco == null)
+                    {
+                        lista.Add(item);
+                    }
+                }
+                this.enderecos = lista;
+            }
             this.nome = this.nome.ToUpper().Trim();
             this.sobrenome = this.sobrenome.ToUpper().Trim();
         }

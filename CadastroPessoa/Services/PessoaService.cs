@@ -18,7 +18,7 @@ namespace CadastroPessoa.Services
         {
             using (Repositorio ctx = new Repositorio())
             {
-                return ctx.Pessoas.Include(a => a.PessoaEnderecos).ThenInclude(a => a.Endereco)
+                return ctx.Pessoas.Include(a => a.enderecos).ThenInclude(a => a.Endereco)
                     .Where(a => a.cpf == uuid).First();
             }
         }
@@ -29,7 +29,7 @@ namespace CadastroPessoa.Services
             {
                 Pessoa _pessoa = ctx.Pessoas.Where(a => a.id == pessoa_uuid).FirstOrDefault();
                 return ctx.Pessoas
-                    .Include(a => a.PessoaEnderecos).ThenInclude(a => a.Endereco)
+                    .Include(a => a.enderecos).ThenInclude(a => a.Endereco)
                     .Where(a => a.id == uuid).FirstOrDefault();
             }
         }
@@ -61,7 +61,7 @@ namespace CadastroPessoa.Services
                 if (pessoa_.Email != null)
                     _pessoa.Email = pessoa_.Email.ToLower();
 
-                foreach (PessoaEndereco item in _pessoa.PessoaEnderecos)
+                foreach (PessoaEndereco item in _pessoa.enderecos)
                 {
                     item.Validar();
                     Endereco _endereco = ctx.Enderecos.Where(a => a.id == item.id_endereco).FirstOrDefault();
@@ -96,7 +96,7 @@ namespace CadastroPessoa.Services
             using (Repositorio ctx = new Repositorio())
             {
                 Pessoa _pessoa = ctx.Pessoas
-                    .Include(a => a.PessoaEnderecos).ThenInclude(a => a.Endereco)
+                    .Include(a => a.enderecos).ThenInclude(a => a.Endereco)
                     .Where(x => x.id == uuid).FirstOrDefault();
                 if (_pessoa == null)
                     throw new ApplicationNotFoundException(ApplicationNotFoundException.FUNCIONARIO_NAO_ENCONTRADO);
@@ -116,26 +116,27 @@ namespace CadastroPessoa.Services
                 _pessoa.cpf = pessoa.cpf;
                 _pessoa.data_nascimento = pessoa.data_nascimento;
                 
-                if (_pessoa.PessoaEnderecos != null && _pessoa.PessoaEnderecos.Count() > 0)
+                if (_pessoa.enderecos != null && _pessoa.enderecos.Count() > 0)
                 {
-                    _pessoa.PessoaEnderecos.Clear();
+                    _pessoa.enderecos.Clear();
                     ctx.SaveChanges();
                 }
 
-                //if (pessoa.PessoaEnderecos == null)
-                //    throw new ApplicationNotFoundException(ApplicationNotFoundException.ENDERECO_NAO_ENCONTRADO);
+                if (pessoa.enderecos == null)
+                    throw new ApplicationNotFoundException(ApplicationNotFoundException.ENDERECO_NAO_ENCONTRADO);
 
-                //foreach (PessoaEndereco item in pessoa.PessoaEnderecos)
-                //{
-                //    item.Validar();
-                //    Endereco _endereco = ctx.Enderecos.Where(a => a.id == item.id_endereco).FirstOrDefault();
+                foreach (PessoaEndereco item in pessoa.enderecos)
+                {
+                    item.Validar();
+                    //Endereco _endereco = EnderecoService.Salvar(item);
 
-                //    if (_endereco == null)
-                //        throw new ApplicationNotFoundException(ApplicationNotFoundException.ENDERECO_NAO_ENCONTRADO);
+                    //if (_endereco == null)
+                    //    throw new ApplicationNotFoundException(ApplicationNotFoundException.ENDERECO_NAO_ENCONTRADO);
 
-                //    item.id_endereco = _endereco.id;
-                //    _pessoa.PessoaEnderecos.Add(item);
-                //}
+                    //item.id_endereco = _endereco.id;
+                    //item.id_pessoa = _pessoa.id;
+                    //_pessoa.enderecos.Add(item);
+                }
 
                 ctx.SaveChanges();
                 return _pessoa;
@@ -157,7 +158,7 @@ namespace CadastroPessoa.Services
                 List<Pessoa> pessoas = new List<Pessoa>();
                 //_pagina.quantidade_total = ctx.Pessoas.Where(query).Count();
                 _pagina.quantidade_total = ctx.Pessoas.Count();
-                pessoas = ctx.Pessoas.Include(a => a.PessoaEnderecos).ThenInclude(a => a.Endereco)
+                pessoas = ctx.Pessoas.Include(a => a.enderecos).ThenInclude(a => a.Endereco)
                     .OrderBy(x => x.nome).Skip(inicio).Take(_pagina.quantidade_pagina).ToList();
 
 

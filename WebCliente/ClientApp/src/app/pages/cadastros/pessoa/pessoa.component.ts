@@ -145,12 +145,12 @@ export class PessoaComponent implements OnInit {
       return;
     }
 
-    if (this.pessoa.pessoaenderecos == null) {
-      this.pessoa.pessoaenderecos = [];
+    if (this.pessoa.enderecos == null) {
+      this.pessoa.enderecos = [];
     }
     endereco.estado = this.getNomeEstado(endereco.estado_uuid);
     endereco.cidade = this.getNomeCidade(endereco.cidade_uuid);
-    this.pessoa.pessoaenderecos.push(endereco);
+    this.pessoa.enderecos.push(endereco);
     this.endereco = {};
   }
 
@@ -242,6 +242,7 @@ export class PessoaComponent implements OnInit {
     if (this.valida(this.pessoa)) {
       //this.pessoa.cep = this.pessoa.cep.replace(/\D/g, '');
       this.loading = true;
+      this.pessoa.data_nascimento_ = new Date(this.pessoa.data_nascimento_str.split("/")[2] + "-" + this.pessoa.data_nascimento_str.split("/")[1] + "-" + this.pessoa.data_nascimento_str.split("/")[0] + "T00:00");
       if (this.pessoa.id != null) {
         this.apiService.Put("Pessoas", this.pessoa).then(
           result => {
@@ -294,9 +295,9 @@ export class PessoaComponent implements OnInit {
     this.apiService.GetOne("Pessoas", pessoa.cpf + "?uuid=" + pessoa.cpf).then(
       result => {
         this.pessoa = result;
-        //if (this.pessoa != null && this.pessoa.data_nascimento != null) {
-        //  this.pessoa.data_nascimento_str = this.global.dateFormater(result['data_nascimento']);
-        //}
+        if (this.pessoa != null && this.pessoa.data_nascimento != null) {
+          this.pessoa.data_nascimento_str = this.global.dateFormater(result['data_nascimento']);
+        }
         this.loading = false;
         //if (this.pessoa.foto_perfil != null) {
          // this.imgSrc = this.pessoa.foto_perfil_link;

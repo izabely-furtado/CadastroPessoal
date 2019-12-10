@@ -17,10 +17,10 @@ namespace CadastroPessoa.Entities
 
         public void Validar()
         {
-            if (this.id_pessoa == 0)
-                throw new ApplicationBadRequestException(ApplicationBadRequestException.PESSOA_INVALIDO);
-            if (this.id_endereco == 0)
-                throw new ApplicationBadRequestException(ApplicationBadRequestException.ENDERECO_INVALIDO);
+            //if (this.id_pessoa == 0)
+            //    throw new ApplicationBadRequestException(ApplicationBadRequestException.PESSOA_INVALIDO);
+            //if (this.id_endereco == 0)
+            //    throw new ApplicationBadRequestException(ApplicationBadRequestException.ENDERECO_INVALIDO);
         }
     }
 }
