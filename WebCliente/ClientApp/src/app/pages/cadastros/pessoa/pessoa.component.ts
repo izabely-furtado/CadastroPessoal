@@ -9,6 +9,7 @@ import Swal from 'sweetalert2';
 import { NgxViacepService, Endereco, ErroCep, ErrorValues, NgxViacepModule } from '@brunoc/ngx-viacep';
 import { Global } from '../../../global';
 import { ApiService } from '../../../services/api.service';
+import { FilterPipe } from 'ngx-filter-pipe';
 
 import {
   Router,
@@ -28,6 +29,7 @@ import { AppComponent } from '../../../app.component';
 export class PessoaComponent implements OnInit {
 
   novaPessoa: boolean = false;
+  filtro: any = {};
   pessoa: any = {};
   endereco: any = {};
   carga_horaria: any = null;
@@ -57,6 +59,7 @@ export class PessoaComponent implements OnInit {
     public dialog: MatDialog,
     private router: Router,
     public viaCEP: NgxViacepService,
+    private filter: FilterPipe
   ) {
 
   }

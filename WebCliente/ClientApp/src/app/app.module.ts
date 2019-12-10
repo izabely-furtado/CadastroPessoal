@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
+import { FilterPipeModule } from 'ngx-filter-pipe';
 
 //import { AppConfig } from './services/app.config';
 
@@ -152,7 +153,8 @@ export const MY_MOMENT_FORMATS = {
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
     NgxMaskModule.forRoot(),
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    FilterPipeModule
   ],
   providers: [
     AppConfig,

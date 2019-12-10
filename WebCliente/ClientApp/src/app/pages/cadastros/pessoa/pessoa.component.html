@@ -13,23 +13,23 @@
       <form class="form-horizontal style-form">
         <!-- status pessoa -->
         <!--<div class="col-xs-12 col-lg-2" style="text-align: center;">
-    <img class="img_perfil" id="imgPessoa" [src]="imgSrc">
-  </div>-->
+          <img class="img_perfil" id="imgPessoa" [src]="imgSrc">
+        </div>-->
         <!--<div class="col-xs-12 col-lg-10">
-    <div class="form-group col-xs-6">
-      <label class="acerta_w control-label">Status</label>
-      <div class="custom-control custom-switch col-lg-9" style="padding:0; padding-left: 15px; padding-top: 5px;">
-        <label class="switch switch-3d switch-info mr-3">
-          <input [(ngModel)]="pessoa.ativo" type="checkbox" class="switch-input custom-control-input"
-                 name="pessoa_ativo" id="pessoa_ativo" (change)="ativo = !ativo" checked>
-          <span class="switch-label"></span>
-          <span class="switch-handle"></span>
-        </label> &ensp; &ensp;
-        <label class="custom-control-label" for="pessoa_ativo" id="label_status" *ngIf="pessoa.ativo">Ativo</label>
-        <label class="custom-control-label" for="pessoa_ativo" id="label_status" *ngIf="!pessoa.ativo">Inativo</label>
-      </div>
-    </div>
-  </div>-->
+          <div class="form-group col-xs-6">
+            <label class="acerta_w control-label">Status</label>
+            <div class="custom-control custom-switch col-lg-9" style="padding:0; padding-left: 15px; padding-top: 5px;">
+              <label class="switch switch-3d switch-info mr-3">
+                <input [(ngModel)]="pessoa.ativo" type="checkbox" class="switch-input custom-control-input"
+                       name="pessoa_ativo" id="pessoa_ativo" (change)="ativo = !ativo" checked>
+                <span class="switch-label"></span>
+                <span class="switch-handle"></span>
+              </label> &ensp; &ensp;
+              <label class="custom-control-label" for="pessoa_ativo" id="label_status" *ngIf="pessoa.ativo">Ativo</label>
+              <label class="custom-control-label" for="pessoa_ativo" id="label_status" *ngIf="!pessoa.ativo">Inativo</label>
+            </div>
+          </div>
+        </div>-->
         <!-- nome e sobrenome -->
         <div class="row col-xs-12 col-lg-12">
           <div class="form-group col-xs-6">
@@ -76,7 +76,7 @@
             </div>
           </div>
         </div>
-        
+
         <!--------------------------------------------- adicionando endereço --------------------------------------------------->
         <!-- endereço -->
         <div class="white-header" style="justify-content: space-between; display:flex; margin-bottom: 0px;">
@@ -244,23 +244,25 @@
       <div class="row pesquisa_pessoa">
         <table class="table table-bordered table-striped table-condensed cf" style="border: 0px;margin:0px;">
           <tr style="background-color:transparent; border: 0px;">
-            <td style="border: 0px; width: 40%">
-              <select class="form-control" [(ngModel)]="tipoBusca.id" (change)="mudarTipoPesquisa()" id="busca_id" name="busca">
-                <option selected value="0">Tipo...</option>
-                <option *ngFor="let tipo of listaTiposBusca" [ngValue]="tipo.id">
-                  {{tipo.nome}}
-                </option>
-              </select>
+            <th style="border: 0px; width: 33%; padding-bottom:0px">
+              <label style="margin:0px">Nome:</label>
+            </th>
+            <th style="border: 0px; width: 33%; padding-bottom:0px">
+              <label style="margin:0px">Sobrenome:</label>
+            </th>
+            <th style="border: 0px; width: 33%; padding-bottom:0px">
+              <label style="margin:0px">CPF:</label>
+            </th>
+          </tr>
+          <tr style="background-color:transparent; border: 0px;">
+            <td style="border: 0px; ">
+              <input [(ngModel)]="filtro.nome" type="text" class="form-control" name="pessoa_nome">
             </td>
-            <td style="border: 0px; width: 40%">
-              <input *ngIf="tipoBusca.id == 1 || tipoBusca.id == 0" [(ngModel)]="pesquisa.nome_pesquisa" mask="000.000.000-00" maxlength="15" type="text" class="form-control" name="pessoa_cpf" [disabled]="tipoBusca.id == 0">
-              <input *ngIf="tipoBusca.id == 2" [(ngModel)]="pesquisa.nome_pesquisa" type="text" class="form-control" name="pessoa_nome">
+            <td style="border: 0px; ">
+              <input [(ngModel)]="filtro.sobrenome" type="text" class="form-control" name="pessoa_sobrenome">
             </td>
-            <td style="border: 0px;  width: 10%">
-              <button style="width:100%" (click)="atual(1, pesquisa)" class="btn btn-primary">Buscar</button>
-            </td>
-            <td style="border: 0px;  width: 10%">
-              <button style="width:100%" (click)="limparCampos(pesquisa,tipoBusca)" class="btn btn-primary">Limpar campos</button>
+            <td style="border: 0px; ">
+              <input [(ngModel)]="filtro.cpf" mask="000.000.000-00" maxlength="15" type="text" class="form-control" name="pessoa_cpf">
             </td>
           </tr>
         </table>
@@ -278,7 +280,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let pessoa of listaPessoas">
+              <tr *ngFor="let pessoa of listaPessoas | filterBy: filtro">
                 <td data-title="CPF">{{formata_CPF(pessoa.cpf)}}</td>
                 <td data-title="Nome">{{pessoa.nome}} {{pessoa.sobrenome}}</td>
                 <td data-title="Data de admissão">{{getFormatterDate(pessoa.data_nascimento)}}</td>

@@ -4,3 +4,4 @@
 
 /WebCliente/ClientApp/node_modules
 /.vs
+/ApiCliente/bin/Debug/netcoreapp2.1/ModelosEmails
