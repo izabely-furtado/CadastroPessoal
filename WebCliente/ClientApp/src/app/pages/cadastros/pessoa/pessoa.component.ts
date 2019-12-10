@@ -96,7 +96,7 @@ export class PessoaComponent implements OnInit {
       });
       return;
     }
-    if (endereco.endereco_rua == null || endereco.endereco_rua == "") {
+    if (endereco.rua == null || endereco.rua == "") {
       Swal.fire({
         type: 'error',
         title: 'Oops...',
@@ -104,7 +104,7 @@ export class PessoaComponent implements OnInit {
       });
       return;
     }
-    if (endereco.endereco_numero == null || endereco.endereco_numero <= 0) {
+    if (endereco.numero == null || endereco.numero <= 0) {
       Swal.fire({
         type: 'error',
         title: 'Oops...',
@@ -112,7 +112,7 @@ export class PessoaComponent implements OnInit {
       });
       return;
     }
-    if (endereco.endereco_bairro == null || endereco.endereco_bairro == "") {
+    if (endereco.bairro == null || endereco.bairro == "") {
       Swal.fire({
         type: 'error',
         title: 'Oops...',
@@ -120,7 +120,7 @@ export class PessoaComponent implements OnInit {
       });
       return;
     }
-    //if (unidade.endereco_complemento == null || unidade.endereco_complemento == "") {
+    //if (unidade.complemento == null || unidade.complemento == "") {
     //  Swal.fire({
     //    type: 'error',
     //    title: 'Oops...',
@@ -128,11 +128,11 @@ export class PessoaComponent implements OnInit {
     //  });
     //  return false;
     //}
-    if (endereco.municipio_uuid == null) {
+    if (endereco.cidade_uuid == null) {
       Swal.fire({
         type: 'error',
         title: 'Oops...',
-        text: 'Insira o municipio!'
+        text: 'Insira a cidade!'
       });
       return;
     }
@@ -148,8 +148,8 @@ export class PessoaComponent implements OnInit {
     if (this.pessoa.enderecos == null) {
       this.pessoa.enderecos = [];
     }
-    endereco.endereco_estado = this.getNomeEstado(endereco.estado_uuid);
-    endereco.endereco_cidade = this.getNomeCidade(endereco.municipio_uuid);
+    endereco.estado = this.getNomeEstado(endereco.estado_uuid);
+    endereco.cidade = this.getNomeCidade(endereco.cidade_uuid);
     this.pessoa.enderecos.push(endereco);
     this.endereco = {};
   }
@@ -243,7 +243,7 @@ export class PessoaComponent implements OnInit {
   edit(pessoa) {
     this.novaPessoa = true;
     this.obterPessoa(pessoa);
-    this.obterListaCidades2(pessoa.estado_uuid, pessoa.municipio_nome);
+    this.obterListaCidades2(pessoa.estado_uuid, pessoa.cidade_nome);
     //this.pessoa = pessoa;
     this.visualizando = false;
 
@@ -276,7 +276,7 @@ export class PessoaComponent implements OnInit {
   
   submit() {
     if (this.valida(this.pessoa)) {
-      this.pessoa.endereco_cep = this.pessoa.endereco_cep.replace(/\D/g, '');
+      this.pessoa.cep = this.pessoa.cep.replace(/\D/g, '');
       this.loading = true;
       if (this.pessoa.uuid != null) {
         this.apiService.Put("Pessoas", this.pessoa).then(
@@ -498,9 +498,9 @@ export class PessoaComponent implements OnInit {
 
         //Preenche os campos com "..." enquanto consulta webservice.
         this.endereco.estado_uuid = null;
-        this.endereco.municipio_uuid = null;
-        this.endereco.endereco_bairro = "";
-        this.endereco.endereco_rua = "";
+        this.endereco.cidade_uuid = null;
+        this.endereco.bairro = "";
+        this.endereco.rua = "";
 
         this.viaCEP.buscarPorCep(cep).then((endereco: Endereco) => {
           // Endereço retornado :)
@@ -527,8 +527,8 @@ export class PessoaComponent implements OnInit {
       this.endereco.estado_uuid = this.getIdEstado(conteudo.uf);
       this.obterListaCidades2(this.endereco.estado_uuid, conteudo.localidade);
 
-      this.endereco.endereco_bairro = conteudo.bairro;
-      this.endereco.endereco_rua = conteudo.logradouro;
+      this.endereco.bairro = conteudo.bairro;
+      this.endereco.rua = conteudo.logradouro;
     }
     else {
       //CEP não Encontrado.
@@ -564,10 +564,10 @@ export class PessoaComponent implements OnInit {
   obterListaCidades2(estado_id, cidade_nome) {
     if (estado_id != null) {
       this.loading = true;
-      this.apiService.Get("Estados/" + estado_id + "/Municipios").then(
+      this.apiService.Get("Estados/" + estado_id + "/Cidades?uuid=" + estado_id).then(
         result => {
           this.listaCidades = result;
-          this.endereco.municipio_uuid = this.getIdCidade(cidade_nome);
+          this.endereco.cidade_uuid = this.getIdCidade(cidade_nome);
           this.loading = false;
         },
         err => {
@@ -581,7 +581,7 @@ export class PessoaComponent implements OnInit {
       );
     }
     else {
-      this.endereco.municipio_uuid = null;
+      this.endereco.cidade_uuid = null;
       this.listaCidades = [];
     }
   }
@@ -607,31 +607,31 @@ export class PessoaComponent implements OnInit {
 
   getIdEstado(estado_sigla) {
     for (var estado in this.listaEstados) {
-      if (this.listaEstados[estado].sigla == estado_sigla) {
-        return this.listaEstados[estado].uuid;
+      if (this.listaEstados[estado].uf == estado_sigla) {
+        return this.listaEstados[estado].id;
       }
     }
   }
 
   getNomeEstado(estado_uuid) {
     for (var estado in this.listaEstados) {
-      if (this.listaEstados[estado].uuid == estado_uuid) {
-        return this.listaEstados[estado].sigla;
+      if (this.listaEstados[estado].id == estado_uuid) {
+        return this.listaEstados[estado].uf;
       }
     }
   }
 
   getIdCidade(cidade_nome) {
     for (var cidade in this.listaCidades) {
-      if (this.listaCidades[cidade].nome == cidade_nome.toUpperCase()) {
-        return this.listaCidades[cidade].uuid;
+      if (this.listaCidades[cidade].nome.toUpperCase() == cidade_nome.toUpperCase()) {
+        return this.listaCidades[cidade].id;
       }
     }
   }
 
   getNomeCidade(cidade_uuid) {
     for (var cidade in this.listaCidades) {
-      if (this.listaCidades[cidade].uuid == cidade_uuid) {
+      if (this.listaCidades[cidade].id == cidade_uuid) {
         return this.listaCidades[cidade].nome.toUpperCase();
       }
     }
