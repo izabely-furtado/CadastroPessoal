@@ -5305,6 +5305,19 @@
         "runtime": {
           "lib/netstandard1.3/Microsoft.WindowsAzure.Storage.dll": {}
         }
+      },
+      "JwtCore/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.1",
+        "dependencies": {
+          "Microsoft.AspNetCore.All": "2.1.8"
+        },
+        "compile": {
+          "bin/placeholder/JwtCore.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/JwtCore.dll": {}
+        }
       }
     }
   },
@@ -14042,11 +14055,16 @@
         "windowsazure.storage.8.1.4.nupkg.sha512",
         "windowsazure.storage.nuspec"
       ]
+    },
+    "JwtCore/1.0.0": {
+      "type": "project",
+      "path": "../JwtCore/JwtCore.csproj",
+      "msbuildProject": "../JwtCore/JwtCore.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.1": [
-      "C:\\Users\\dev\\sistemas\\Cadastro_Pessoal\\NusaJwtCore\\JwtCore.csproj",
+      "JwtCore >= 1.0.0",
       "LinqKit.Core >= 1.1.16",
       "Microsoft.AspNetCore.All >= 2.1.11",
       "Microsoft.NETCore.App >= 2.1.0",
@@ -14084,8 +14102,8 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-            "C:\\Users\\dev\\sistemas\\Cadastro_Pessoal\\NusaJwtCore\\JwtCore.csproj": {
-              "projectPath": "C:\\Users\\dev\\sistemas\\Cadastro_Pessoal\\NusaJwtCore\\JwtCore.csproj"
+            "C:\\Users\\dev\\sistemas\\Cadastro_Pessoal\\JwtCore\\JwtCore.csproj": {
+              "projectPath": "C:\\Users\\dev\\sistemas\\Cadastro_Pessoal\\JwtCore\\JwtCore.csproj"
             }
           }
         }
@@ -14129,16 +14147,5 @@
         "warn": true
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1104",
-      "level": "Error",
-      "message": "Não é possível encontrar o projeto 'C:\\Users\\dev\\sistemas\\Cadastro_Pessoal\\NusaJwtCore\\JwtCore.csproj'. Verifique se a referência do projeto é válida e se o arquivo de projeto existe.",
-      "libraryId": "C:\\Users\\dev\\sistemas\\Cadastro_Pessoal\\NusaJwtCore\\JwtCore.csproj",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v2.1"
-      ]
-    }
-  ]
+  }
 }

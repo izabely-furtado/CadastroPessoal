@@ -13939,7 +13939,7 @@
     "version": "1.0.0",
     "restore": {
       "projectUniqueName": "C:\\Users\\dev\\sistemas\\Cadastro_Pessoal\\JwtCore\\JwtCore.csproj",
-      "projectName": "NusaJwtCore",
+      "projectName": "JwtCore",
       "projectPath": "C:\\Users\\dev\\sistemas\\Cadastro_Pessoal\\JwtCore\\JwtCore.csproj",
       "packagesPath": "C:\\Users\\dev\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\dev\\sistemas\\Cadastro_Pessoal\\JwtCore\\obj\\",

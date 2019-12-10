@@ -67,9 +67,6 @@ import { Global } from './global';
 import { ApiService } from './services/api.service';
 import { AppConfig } from './services/app.config';
 
-//modal
-import { ModalCadSetorComponent } from './components/modal-cad-setor/modal-cad-setor.component';
-import { ModalAcompanhamentoComponent } from './components/modal-acompanhamento/modal-acompanhamento.component';
 import { PessoaComponent } from './pages/cadastros/pessoa/pessoa.component';
 
 export function initializeApp(appConfig: AppConfig) {
@@ -94,9 +91,7 @@ export const MY_MOMENT_FORMATS = {
     CounterComponent,
     FetchDataComponent,
     TopBarComponent,
-    ModalCadSetorComponent,
     PessoaComponent,
-    ModalAcompanhamentoComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -171,8 +166,7 @@ export const MY_MOMENT_FORMATS = {
     { provide: OWL_DATE_TIME_FORMATS, useValue: MY_MOMENT_FORMATS },
   ],
   entryComponents:[
-    ModalCadSetorComponent,
-    ModalAcompanhamentoComponent,
+    
   ],
   bootstrap: [AppComponent]
 })

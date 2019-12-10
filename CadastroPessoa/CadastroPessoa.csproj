@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NusaJwtCore\JwtCore.csproj" />
+    <ProjectReference Include="..\JwtCore\JwtCore.csproj" />
   </ItemGroup>
 
 </Project>
