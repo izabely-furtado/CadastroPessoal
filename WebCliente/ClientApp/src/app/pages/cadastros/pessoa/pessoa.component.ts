@@ -61,9 +61,9 @@ export class PessoaComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.obterPessoas();
+    //this.obterPessoas();
     this.obterListaEstados();
-   // this.atual(1);
+    this.atual(1);
 
   }
 

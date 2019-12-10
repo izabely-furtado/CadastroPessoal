@@ -6,6 +6,7 @@ namespace CadastroPessoa.Entities
 {
     public class PessoaEndereco : Entity
     {
+
         [ForeignKey("Pessoa")]
         public int id_pessoa { get; set; }
         public virtual Pessoa Pessoa { get; set; }

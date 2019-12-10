@@ -147,9 +147,14 @@ namespace CadastroPessoa.Services
                 _pagina.quantidade_pagina = 10; //???
                 int inicio = (pagina - 1) * _pagina.quantidade_pagina;
 
-                ExpressionStarter<Pessoa> query = PredicateBuilder.New<Pessoa>(true);
+                //ExpressionStarter<Pessoa> query = PredicateBuilder.New<Pessoa>(true);
 
                 List<Pessoa> pessoas = new List<Pessoa>();
+                //_pagina.quantidade_total = ctx.Pessoas.Where(query).Count();
+                _pagina.quantidade_total = ctx.Pessoas.Count();
+                pessoas = ctx.Pessoas.Include(a => a.PessoaEnderecos).ThenInclude(a => a.Endereco)
+                    .OrderBy(x => x.nome).Skip(inicio).Take(_pagina.quantidade_pagina).ToList();
+
 
                 _pagina.total_paginas = Convert.ToInt32(Math.Ceiling((double)_pagina.quantidade_total / _pagina.quantidade_pagina));
                 _pagina.conteudo = pessoas;
