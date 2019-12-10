@@ -48,9 +48,12 @@ namespace CadastroPessoa.Services
             {
                 pessoa_.Validar();
                 Pessoa _pessoa = ctx.Pessoas.Where(x => x.cpf.Equals(pessoa_.cpf)).FirstOrDefault();
-                
-                if (_pessoa != null)
-                    throw new ApplicationBadRequestException(ApplicationBadRequestException.ERRO_AO_CADASTRAR_PESSOA);
+
+                if (_pessoa != null && _pessoa.id != 0)
+                {
+                    return PessoaService.Editar(_pessoa.id, pessoa_);
+                }
+                    //throw new ApplicationBadRequestException(ApplicationBadRequestException.ERRO_AO_CADASTRAR_PESSOA);
 
                 _pessoa = new Pessoa();
                 _pessoa.nome = pessoa_.nome;
@@ -119,17 +122,20 @@ namespace CadastroPessoa.Services
                     ctx.SaveChanges();
                 }
 
-                foreach (PessoaEndereco item in pessoa.PessoaEnderecos)
-                {
-                    item.Validar();
-                    Endereco _endereco = ctx.Enderecos.Where(a => a.id == item.id_endereco).FirstOrDefault();
+                //if (pessoa.PessoaEnderecos == null)
+                //    throw new ApplicationNotFoundException(ApplicationNotFoundException.ENDERECO_NAO_ENCONTRADO);
 
-                    if (_endereco == null)
-                        throw new ApplicationNotFoundException(ApplicationNotFoundException.ENDERECO_NAO_ENCONTRADO);
+                //foreach (PessoaEndereco item in pessoa.PessoaEnderecos)
+                //{
+                //    item.Validar();
+                //    Endereco _endereco = ctx.Enderecos.Where(a => a.id == item.id_endereco).FirstOrDefault();
 
-                    item.id_endereco = _endereco.id;
-                    _pessoa.PessoaEnderecos.Add(item);
-                }
+                //    if (_endereco == null)
+                //        throw new ApplicationNotFoundException(ApplicationNotFoundException.ENDERECO_NAO_ENCONTRADO);
+
+                //    item.id_endereco = _endereco.id;
+                //    _pessoa.PessoaEnderecos.Add(item);
+                //}
 
                 ctx.SaveChanges();
                 return _pessoa;

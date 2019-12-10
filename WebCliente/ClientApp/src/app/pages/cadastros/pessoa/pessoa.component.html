@@ -38,7 +38,7 @@
           <div class="form-group col-xs-6">
             <label class="acerta_w control-label" style="white-space: nowrap;"><b style="color:#aa0028">*</b>Data de nascimento</label>
             <div class="col-lg-9">
-              <input [(ngModel)]="pessoa.data_nascimento_str" [dropSpecialCharacters]="false" mask="00/00/0000" type="text" class="form-control" name="data_nascimento">
+              <input [(ngModel)]="pessoa.data_nascimento" [dropSpecialCharacters]="false" mask="00/00/0000" type="text" class="form-control" name="data_nascimento">
             </div>
           </div>
         </div>
@@ -167,7 +167,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let ender of pessoa.enderecos">
+              <tr *ngFor="let ender of pessoa.pessoaenderecos">
                 <td data-title="Nome">{{ender.nome}}</td>
                 <td data-title="Endereco">{{ender.rua}}, {{ender.numero}} - {{ender.bairro}}, {{ender.cidade}} - {{ender.estado}}, {{ender.cep}} </td>
                 <td data-title="Ação">

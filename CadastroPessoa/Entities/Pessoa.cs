@@ -53,19 +53,19 @@ namespace CadastroPessoa.Entities
             this.cpf = this.cpf.Replace("-", "");
             this.cpf = this.cpf.Replace(".", "");
             
-            if (this.PessoaEnderecos != null && this.PessoaEnderecos.Count > 0)
-            {
-                List<PessoaEndereco> lista = new List<PessoaEndereco>();
-                foreach (var item in this.PessoaEnderecos)
-                {
-                    PessoaEndereco pessoaEndereco = lista.Where(x => x.id_endereco == item.id_endereco).FirstOrDefault();
-                    if (pessoaEndereco == null)
-                    {
-                        lista.Add(item);
-                    }
-                }
-                this.PessoaEnderecos = lista;
-            }
+            //if (this.PessoaEnderecos != null && this.PessoaEnderecos.Count > 0)
+            //{
+            //    List<PessoaEndereco> lista = new List<PessoaEndereco>();
+            //    foreach (var item in this.PessoaEnderecos)
+            //    {
+            //        PessoaEndereco pessoaEndereco = lista.Where(x => x.id_endereco == item.id_endereco).FirstOrDefault();
+            //        if (pessoaEndereco == null)
+            //        {
+            //            lista.Add(item);
+            //        }
+            //    }
+            //    this.PessoaEnderecos = lista;
+            //}
             this.nome = this.nome.ToUpper().Trim();
             this.sobrenome = this.sobrenome.ToUpper().Trim();
         }
