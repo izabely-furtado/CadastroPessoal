@@ -25,7 +25,6 @@ namespace ApiCliente.Controllers
 
                 cfg.CreateMap<EnderecoRequest, Endereco>().IgnoreAllPropertiesWithAnInaccessibleSetter();
                 cfg.CreateMap<PessoaRequest, Pessoa>().IgnoreAllPropertiesWithAnInaccessibleSetter();
-                cfg.CreateMap<PesssoaEnderecoRequest, PessoaEndereco>().IgnoreAllPropertiesWithAnInaccessibleSetter();
             });
 
             var configResponse = new MapperConfiguration(cfg =>
@@ -34,9 +33,6 @@ namespace ApiCliente.Controllers
                 cfg.CreateMap<Estado, EstadoResponse>().IgnoreAllPropertiesWithAnInaccessibleSetter();
                 cfg.CreateMap<Endereco, EnderecoResponse>().IgnoreAllPropertiesWithAnInaccessibleSetter();
                 cfg.CreateMap<Pessoa, PessoaResponse>().IgnoreAllPropertiesWithAnInaccessibleSetter();
-                cfg.CreateMap<PessoaEndereco, PessoaEnderecoResponse>().IgnoreAllPropertiesWithAnInaccessibleSetter();
-
-                cfg.CreateMap<PessoaEndereco, PessoaEnderecoResponse>();
       
                 //cfg.CreateMap<Pessoa, PessoaResponse>()
                 //.ForMember(dest => dest.foto_perfil_link, opts => opts.MapFrom(src => appSettings.Value.ApiPresenca + "/File/" + "/Perfil/" + src.FotoPerfil));

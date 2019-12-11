@@ -18,8 +18,7 @@ namespace CadastroPessoa.Persistencia
         public DbSet<Estado> Estados { get; set; }
         public DbSet<Pessoa> Pessoas { get; set; }
         public DbSet<Endereco> Enderecos { get; set; }
-        public DbSet<PessoaEndereco> PessoaEnderecos { get; set; }
-
+      
         public DbSet<EscalaIntervalo> EscalaIntervalos { get; set; }
        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -32,8 +31,7 @@ namespace CadastroPessoa.Persistencia
             modelBuilder.Entity<Estado>().ToTable("estado");
             modelBuilder.Entity<Pessoa>().ToTable("pessoa");
             modelBuilder.Entity<Endereco>().ToTable("endereco");
-            modelBuilder.Entity<PessoaEndereco>().ToTable("endereco_pessoa");
-
+            
             modelBuilder.Entity<EscalaIntervalo>().ToTable("escala_intervalo");
          
         }

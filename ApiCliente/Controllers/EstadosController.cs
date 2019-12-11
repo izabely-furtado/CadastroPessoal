@@ -32,5 +32,6 @@ namespace ApiCliente.Controllers
         {
             return Ok(_mapperResponse.Map<List<CidadeResponse>>(EstadoService.ObterCidades(uuid)));
         }
+        
     }
 }

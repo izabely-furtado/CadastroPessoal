@@ -44,8 +44,25 @@ namespace CadastroPessoa.Services
             }
         }
 
-        
-       
+        public static bool Deletar(int uuid)
+        {
+            using (Repositorio ctx = new Repositorio())
+            {
+                Endereco _endereco = ctx.Enderecos
+                    .Where(s => s.id == uuid).FirstOrDefault();
+
+                if (_endereco == null)
+                    return true;
+
+                ctx.Remove(_endereco);
+                ctx.SaveChanges();
+
+                return true;
+            }
+        }
+
+
+
 
 
 

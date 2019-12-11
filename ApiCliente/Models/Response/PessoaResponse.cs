@@ -15,6 +15,6 @@ namespace ApiCliente.Models.Response
 
         //public string foto_perfil { get; set; }
         //public string foto_perfil_link { get; set; }
-        public List<PessoaEnderecoResponse> enderecos { get; set; }
+        public List<EnderecoResponse> enderecos { get; set; }
     }
 }

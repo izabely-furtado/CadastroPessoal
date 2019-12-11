@@ -15,6 +15,10 @@ namespace CadastroPessoa.Entities
         public string bairro { get; set; }
         public string uf { get; set; }
 
+        [ForeignKey("Pessoa")]
+        public int id_pessoa { get; set; }
+        public virtual Pessoa Pessoa { get; set; }
+
         public void Validar()
         {
             if (string.IsNullOrWhiteSpace(nome))

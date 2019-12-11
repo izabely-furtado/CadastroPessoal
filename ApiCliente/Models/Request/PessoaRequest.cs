@@ -13,6 +13,6 @@ namespace ApiCliente.Models.Request
         public DateTime? data_nascimento { get; set; }
         public string Email { get; set; }
 
-        public List<PesssoaEnderecoRequest> enderecos { get; set; }
+        public List<EnderecoRequest> enderecos { get; set; }
     }
 }

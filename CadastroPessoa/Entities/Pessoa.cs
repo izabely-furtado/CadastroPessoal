@@ -17,7 +17,7 @@ namespace CadastroPessoa.Entities
         public DateTime? data_nascimento { get; set; }
         public string Email { get; set; }
 
-        public virtual List<PessoaEndereco> enderecos { get; set; }
+        public virtual List<Endereco> enderecos { get; set; }
 
         //public string FotoPerfil { get; set; }
 
@@ -55,11 +55,11 @@ namespace CadastroPessoa.Entities
 
             if (this.enderecos != null && this.enderecos.Count > 0)
             {
-                List<PessoaEndereco> lista = new List<PessoaEndereco>();
+                List<Endereco> lista = new List<Endereco>();
                 foreach (var item in this.enderecos)
                 {
-                    PessoaEndereco pessoaEndereco = lista.Where(x => x.id_endereco == item.id_endereco).FirstOrDefault();
-                    if (pessoaEndereco == null)
+                    Endereco endereco = lista.Where(x => x.id == item.id).FirstOrDefault();
+                    if (endereco == null)
                     {
                         lista.Add(item);
                     }

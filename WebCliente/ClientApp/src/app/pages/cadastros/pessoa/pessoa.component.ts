@@ -61,7 +61,6 @@ export class PessoaComponent implements OnInit {
   }
 
   ngOnInit() {
-    //this.obterPessoas();
     this.obterListaEstados();
     this.atual(1);
 
@@ -148,7 +147,7 @@ export class PessoaComponent implements OnInit {
     if (this.pessoa.enderecos == null) {
       this.pessoa.enderecos = [];
     }
-    endereco.estado = this.getNomeEstado(endereco.estado_uuid);
+    endereco.uf = this.getNomeEstado(endereco.estado_uuid);
     endereco.cidade = this.getNomeCidade(endereco.cidade_uuid);
     this.pessoa.enderecos.push(endereco);
     this.endereco = {};
@@ -240,7 +239,7 @@ export class PessoaComponent implements OnInit {
   
   submit() {
     if (this.valida(this.pessoa)) {
-      //this.pessoa.cep = this.pessoa.cep.replace(/\D/g, '');
+      this.pessoa.cep = this.pessoa.cep.replace(/\D/g, '');
       this.loading = true;
       this.pessoa.data_nascimento_ = new Date(this.pessoa.data_nascimento_str.split("/")[2] + "-" + this.pessoa.data_nascimento_str.split("/")[1] + "-" + this.pessoa.data_nascimento_str.split("/")[0] + "T00:00");
       if (this.pessoa.id != null) {
@@ -289,6 +288,25 @@ export class PessoaComponent implements OnInit {
       return;
     }
   }
+
+  remove(pessoa) {
+    this.loading = true;
+    this.apiService.Delete("Pessoas", pessoa.cpf).then(
+      result => {
+        this.ngOnInit();
+        this.loading = false;
+      },
+      err => {
+        this.loading = false;
+        Swal.fire({
+          type: 'error',
+          title: 'Oops...',
+          text: err.error.mensagem
+        });
+      }
+    );
+  }
+
 
   obterPessoa(pessoa) {
     this.loading = true;

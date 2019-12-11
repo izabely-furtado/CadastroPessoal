@@ -41,9 +41,9 @@ namespace ApiCliente.Controllers
         }
 
         [HttpPost]
-        public ActionResult<PessoaResponse> Salvar([FromBody] PessoaRequest funcionarioRequest)
+        public ActionResult<PessoaResponse> Salvar([FromBody] PessoaRequest pessoaRequest)
         {
-            Pessoa pessoa = _mapperRequest.Map<Pessoa>(funcionarioRequest);
+            Pessoa pessoa = _mapperRequest.Map<Pessoa>(pessoaRequest);
             return Ok(_mapperResponse.Map<PessoaResponse>(PessoaService.Salvar(pessoa)));
         }
 
@@ -54,7 +54,11 @@ namespace ApiCliente.Controllers
             return Ok(_mapperResponse.Map<PessoaResponse>(PessoaService.Editar(uuid, funcionario)));
         }
 
-        
+        [HttpDelete("{cpf}")]
+        public ActionResult DeletarPessoa(string uuid)
+        {
+            return Ok(PessoaService.Deletar(uuid));
+        }
 
         //[HttpPatch("{id}/FotoPerfil")]
         //public ActionResult PatchFotoPerfil(string uuid, string foto_perfil)

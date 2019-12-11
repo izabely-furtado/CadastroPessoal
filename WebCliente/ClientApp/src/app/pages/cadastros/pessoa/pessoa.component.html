@@ -169,7 +169,7 @@
             <tbody>
               <tr *ngFor="let ender of pessoa.enderecos">
                 <td data-title="Nome">{{ender.nome}}</td>
-                <td data-title="Endereco">{{ender.rua}}, {{ender.numero}} - {{ender.bairro}}, {{ender.cidade}} - {{ender.estado}}, {{ender.cep}} </td>
+                <td data-title="Endereco">{{ender.rua}}, {{ender.numero}} - {{ender.bairro}}, {{ender.cidade}} - {{ender.uf}}, {{ender.cep}} </td>
                 <td data-title="Ação">
                   <button class="btn btn-sm btn-warning" title="Editar" (click)="editEndereco(ender)">
                     <i class="fas fa-edit"></i>
@@ -258,7 +258,7 @@
                 <th>Data nascimento</th>
                 <th>Telefone</th>
                 <th>E-mail</th>
-                <th style="width: 5%">Ação</th>
+                <th style="width: 10%">Ação</th>
               </tr>
             </thead>
             <tbody>
@@ -271,6 +271,9 @@
                 <td data-title="Ação">
                   <button class="btn btn-sm btn-warning" title="Editar" (click)="edit(pessoa)">
                     <i class="fas fa-edit"></i>
+                  </button>
+                  <button class="btn btn-sm btn-danger" title="Remover" (click)="remove(pessoa)">
+                    <i class="fas fa-times"></i>
                   </button>
                 </td>
               </tr>
@@ -309,6 +312,13 @@
           </a>
           &nbsp;
           <label class="control-label">Editar</label>
+          <!-- separador -->
+          &emsp;|&emsp;
+          <a class="btn btn-sm btn-danger">
+            <i class="fas fa-times"></i>
+          </a>
+          &nbsp;
+          <label class="control-label">Remover</label>
         </div>
       </div>
     </div>
