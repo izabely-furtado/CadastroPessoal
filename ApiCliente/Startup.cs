@@ -75,12 +75,12 @@ namespace ApiCliente
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseNusaExceptionMiddleware();
+                app.UseExceptionMiddleware();
             }
             else
             {
                 app.UseHsts();                
-                app.UseNusaExceptionMiddleware();
+                app.UseExceptionMiddleware();
             }
 
             app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader().AllowCredentials());

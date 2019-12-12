@@ -16,20 +16,20 @@ namespace CadastroPessoa.Util
      app.UseNusaExceptionMiddleware();
      app.UseExceptionHandler(); } 
      */
-    public class NusaExceptionMiddleware
+    public class ExceptionMiddleware
     {
         private readonly RequestDelegate _next;
-        private readonly ILogger<NusaExceptionMiddleware> _logger;
+        private readonly ILogger<ExceptionMiddleware> _logger;
 
         public class MessageException
         {
             public string mensagem { get; set; }
         }
 
-        public NusaExceptionMiddleware(RequestDelegate next, ILoggerFactory loggerFactory)
+        public ExceptionMiddleware(RequestDelegate next, ILoggerFactory loggerFactory)
         {
             _next = next ?? throw new ArgumentNullException(nameof(next));
-            _logger = loggerFactory?.CreateLogger<NusaExceptionMiddleware>() ?? throw new ArgumentNullException(nameof(loggerFactory));
+            _logger = loggerFactory?.CreateLogger<ExceptionMiddleware>() ?? throw new ArgumentNullException(nameof(loggerFactory));
         }
 
         public async Task Invoke(HttpContext context)
@@ -120,9 +120,9 @@ namespace CadastroPessoa.Util
     // Extension method used to add the middleware to the HTTP request pipeline.
     public static class NusaExceptionMiddlewareExtensions
     {
-        public static IApplicationBuilder UseNusaExceptionMiddleware(this IApplicationBuilder builder)
+        public static IApplicationBuilder UseExceptionMiddleware(this IApplicationBuilder builder)
         {
-            return builder.UseMiddleware<NusaExceptionMiddleware>();
+            return builder.UseMiddleware<ExceptionMiddleware>();
         }
     }
 }
