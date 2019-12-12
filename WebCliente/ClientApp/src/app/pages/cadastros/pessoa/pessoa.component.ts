@@ -153,8 +153,14 @@ export class PessoaComponent implements OnInit {
     this.endereco = {};
   }
 
-  editEndereco(ender) {
+  editEndereco(ender, index) {
     this.endereco = ender;
+    this.obterListaCidades2(this.endereco.estado_uuid, this.endereco.municipio_nome);
+    this.pessoa.enderecos.splice(index, 1);
+  }
+
+  removeEndereco(ender) {
+    this.pessoa.enderecos.splice(ender, 1);
   }
   
 
@@ -456,7 +462,11 @@ export class PessoaComponent implements OnInit {
           this.meu_callback(endereco);
         }).catch((error: ErroCep) => {
           this.listaCidades = [];
-          // Alguma coisa deu errado :/
+          Swal.fire({
+            type: 'error',
+            title: 'Oops...',
+            text: 'CEP Inválido!'
+          });
         });
       }
       else {
@@ -480,9 +490,15 @@ export class PessoaComponent implements OnInit {
       this.endereco.rua = conteudo.logradouro;
     }
     else {
-      //CEP não Encontrado.
-      //this.limpa_formulário_cep();
-      //alert("CEP não encontrado.");
+      Swal.fire({
+        type: 'error',
+        title: 'Oops...',
+        text: 'CEP Inválido!'
+      });
+      this.endereco.estado_uuid = null;
+      this.endereco.cidade_uuid = null;
+      this.endereco.bairro = "";
+      this.endereco.rua = "";
     }
   }
 
@@ -533,6 +549,7 @@ export class PessoaComponent implements OnInit {
       this.endereco.cidade_uuid = null;
       this.listaCidades = [];
     }
+    this.loading = false;
   }
 
 

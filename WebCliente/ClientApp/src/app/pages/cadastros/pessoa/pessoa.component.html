@@ -167,14 +167,14 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let ender of pessoa.enderecos">
+              <tr *ngFor="let ender of pessoa.enderecos; let i = index" [attr.data-index]="i">
                 <td data-title="Nome">{{ender.nome}}</td>
                 <td data-title="Endereco">{{ender.rua}}, {{ender.numero}} - {{ender.bairro}}, {{ender.cidade}} - {{ender.uf}}, {{ender.cep}} </td>
                 <td data-title="Ação">
-                  <button class="btn btn-sm btn-warning" title="Editar" (click)="editEndereco(ender)">
+                  <button class="btn btn-sm btn-warning" title="Editar" (click)="editEndereco(ender, i)">
                     <i class="fas fa-edit"></i>
                   </button>
-                  <button class="btn btn-sm btn-danger" title="Remover" (click)="removeSetor(set)">
+                  <button class="btn btn-sm btn-danger" title="Remover" (click)="removeEndereco(i)">
                     <i class="fas fa-times"></i>
                   </button>
                 </td>
