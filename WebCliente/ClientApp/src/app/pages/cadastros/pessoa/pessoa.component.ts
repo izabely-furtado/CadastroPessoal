@@ -155,7 +155,7 @@ export class PessoaComponent implements OnInit {
 
   editEndereco(ender, index) {
     this.endereco = ender;
-    this.obterListaCidades2(this.endereco.estado_uuid, this.endereco.municipio_nome);
+    this.obterListaCidades2(this.endereco.estado_uuid, this.endereco.cidade);
     this.pessoa.enderecos.splice(index, 1);
   }
 
