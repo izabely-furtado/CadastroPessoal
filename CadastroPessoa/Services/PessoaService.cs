@@ -46,7 +46,7 @@ namespace CadastroPessoa.Services
         {
             using (Repositorio ctx = new Repositorio())
             {
-                pessoa_.Validar();
+                //pessoa_.Validar();
                 Pessoa _pessoa = ctx.Pessoas.Where(x => x.cpf.Equals(pessoa_.cpf)).FirstOrDefault();
 
                 if (_pessoa != null && _pessoa.id != 0)
@@ -68,10 +68,9 @@ namespace CadastroPessoa.Services
                 pessoa.enderecos = pessoa_.enderecos;
 
 
-                //if (pessoaRetorno == null)
-                //    throw new ApplicationBadRequestException(ApplicationBadRequestException.ERRO_AO_CADASTRAR_PESSOA);
                 //pessoa.id = pessoa.id;
                 //pessoa.FotoPerfil = pessoaRetorno.foto_perfil;
+
                 ctx.Pessoas.Add(pessoa);
                 ctx.SaveChanges();
                 return pessoa;
@@ -85,14 +84,7 @@ namespace CadastroPessoa.Services
                 Pessoa _pessoa = ctx.Pessoas
                     .Include(a => a.enderecos)
                     .Where(x => x.id == uuid).FirstOrDefault();
-                if (_pessoa == null)
-                    throw new ApplicationNotFoundException(ApplicationNotFoundException.FUNCIONARIO_NAO_ENCONTRADO);
-
-                Pessoa _pessoa1 = ctx.Pessoas.Where(x => x.id != uuid && x.cpf.Equals(pessoa.cpf)).FirstOrDefault();
-                if (_pessoa1 != null)
-                    throw new ApplicationBadRequestException(ApplicationBadRequestException.CPF_EXISTENTE);
-
-                pessoa.Validar();
+                _pessoa.Validar();
 
                 _pessoa.nome = pessoa.nome.ToUpper();
                 _pessoa.sobrenome = pessoa.sobrenome.ToUpper();
