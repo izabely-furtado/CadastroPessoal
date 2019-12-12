@@ -111,28 +111,9 @@ namespace CadastroPessoa.Services
                 _pessoa.telefone_numero = pessoa.telefone_numero;
                 _pessoa.cpf = pessoa.cpf;
                 _pessoa.data_nascimento = pessoa.data_nascimento;
-
-                if (_pessoa.enderecos != null && _pessoa.enderecos.Count() > 0)
-                {
-                    _pessoa.enderecos.Clear();
-                    ctx.SaveChanges();
-                }
-
-                if (pessoa.enderecos == null)
-                    throw new ApplicationNotFoundException(ApplicationNotFoundException.ENDERECO_NAO_ENCONTRADO);
-
-                foreach (Endereco item in pessoa.enderecos)
-                {
-                    item.Validar();
-                    Endereco _endereco = EnderecoService.Salvar(item);
-
-                    if (_endereco == null)
-                        throw new ApplicationNotFoundException(ApplicationNotFoundException.ENDERECO_NAO_ENCONTRADO);
-
-                    //item.id_endereco = _endereco.id;
-                    //item.id_pessoa = _pessoa.id;
-                    _pessoa.enderecos.Add(item);
-                }
+                _pessoa.enderecos = pessoa.enderecos;
+                ctx.Pessoas.Update(_pessoa);
+                
 
                 ctx.SaveChanges();
                 return _pessoa;
@@ -153,7 +134,7 @@ namespace CadastroPessoa.Services
                 _pagina.quantidade_total = ctx.Pessoas.Count();
                 pessoas = ctx.Pessoas.Include(a => a.enderecos)
                     .OrderBy(x => x.nome).Skip(inicio).Take(_pagina.quantidade_pagina).ToList();
-                
+
                 _pagina.total_paginas = Convert.ToInt32(Math.Ceiling((double)_pagina.quantidade_total / _pagina.quantidade_pagina));
                 _pagina.conteudo = pessoas;
 

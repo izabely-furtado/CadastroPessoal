@@ -200,6 +200,17 @@ export class PessoaComponent implements OnInit {
       });
       return false;
     }
+    if (pessoa.enderecos == null || pessoa.enderecos.length == null || pessoa.enderecos.length == 0) {
+      Swal.fire({
+        type: 'error',
+        title: 'Oops...',
+        text: 'Insira pelo ou menos um endereço!'
+      });
+      return false;
+    }
+    for (var i = 0; i < this.pessoa.enderecos.length; i++) {
+      this.pessoa.enderecos[i].cep = this.pessoa.enderecos[i].cep.replace(/\D/g, '');
+    }
     return true;
   }
 
@@ -239,9 +250,9 @@ export class PessoaComponent implements OnInit {
   
   submit() {
     if (this.valida(this.pessoa)) {
-      this.pessoa.cep = this.pessoa.cep.replace(/\D/g, '');
+      this.pessoa.cpf = this.pessoa.cpf.replace(/\D/g, '');
       this.loading = true;
-      this.pessoa.data_nascimento_ = new Date(this.pessoa.data_nascimento_str.split("/")[2] + "-" + this.pessoa.data_nascimento_str.split("/")[1] + "-" + this.pessoa.data_nascimento_str.split("/")[0] + "T00:00");
+      this.pessoa.data_nascimento = new Date(this.pessoa.data_nascimento_str.split("/")[2] + "-" + this.pessoa.data_nascimento_str.split("/")[1] + "-" + this.pessoa.data_nascimento_str.split("/")[0] + "T00:00");
       if (this.pessoa.id != null) {
         this.apiService.Put("Pessoas", this.pessoa).then(
           result => {
