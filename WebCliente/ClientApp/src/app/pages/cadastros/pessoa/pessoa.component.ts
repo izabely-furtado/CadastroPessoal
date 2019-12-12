@@ -302,7 +302,7 @@ export class PessoaComponent implements OnInit {
 
   remove(pessoa) {
     this.loading = true;
-    this.apiService.Delete("Pessoas", pessoa.cpf).then(
+    this.apiService.Delete("Pessoas", pessoa.cpf + "?uuid=" + pessoa.cpf).then(
       result => {
         this.ngOnInit();
         this.loading = false;
