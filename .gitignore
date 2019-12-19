@@ -5,3 +5,7 @@
 /WebCliente/ClientApp/node_modules
 /.vs
 /ApiCliente/bin/Debug/netcoreapp2.1/ModelosEmails
+/ApiCliente/bin/Debug/netcoreapp2.1
+/WebCliente/bin/Debug/netcoreapp2.1
+/JwtCore/bin/Debug/netcoreapp2.1
+/CadastroPessoa/bin/Debug/netcoreapp2.1
