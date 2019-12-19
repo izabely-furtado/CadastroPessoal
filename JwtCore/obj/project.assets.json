@@ -13938,11 +13938,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\dev\\sistemas\\Cadastro_Pessoal\\JwtCore\\JwtCore.csproj",
+      "projectUniqueName": "C:\\Users\\dev\\sistemas\\CadastroPessoal\\JwtCore\\JwtCore.csproj",
       "projectName": "JwtCore",
-      "projectPath": "C:\\Users\\dev\\sistemas\\Cadastro_Pessoal\\JwtCore\\JwtCore.csproj",
+      "projectPath": "C:\\Users\\dev\\sistemas\\CadastroPessoal\\JwtCore\\JwtCore.csproj",
       "packagesPath": "C:\\Users\\dev\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\dev\\sistemas\\Cadastro_Pessoal\\JwtCore\\obj\\",
+      "outputPath": "C:\\Users\\dev\\sistemas\\CadastroPessoal\\JwtCore\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

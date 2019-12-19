@@ -11809,11 +11809,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\dev\\sistemas\\Cadastro_Pessoal\\WebCliente\\WebCliente.csproj",
+      "projectUniqueName": "C:\\Users\\dev\\sistemas\\CadastroPessoal\\WebCliente\\WebCliente.csproj",
       "projectName": "WebCliente",
-      "projectPath": "C:\\Users\\dev\\sistemas\\Cadastro_Pessoal\\WebCliente\\WebCliente.csproj",
+      "projectPath": "C:\\Users\\dev\\sistemas\\CadastroPessoal\\WebCliente\\WebCliente.csproj",
       "packagesPath": "C:\\Users\\dev\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\dev\\sistemas\\Cadastro_Pessoal\\WebCliente\\obj\\",
+      "outputPath": "C:\\Users\\dev\\sistemas\\CadastroPessoal\\WebCliente\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

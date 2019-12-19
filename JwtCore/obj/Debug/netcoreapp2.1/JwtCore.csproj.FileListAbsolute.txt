@@ -20,3 +20,14 @@ C:\Users\dev\sistemas\Cadastro_Pessoal\JwtCore\obj\Debug\netcoreapp2.1\JwtCore.A
 C:\Users\dev\sistemas\Cadastro_Pessoal\JwtCore\obj\Debug\netcoreapp2.1\JwtCore.AssemblyInfo.cs
 C:\Users\dev\sistemas\Cadastro_Pessoal\JwtCore\obj\Debug\netcoreapp2.1\JwtCore.dll
 C:\Users\dev\sistemas\Cadastro_Pessoal\JwtCore\obj\Debug\netcoreapp2.1\JwtCore.pdb
+C:\Users\dev\sistemas\CadastroPessoal\JwtCore\bin\Debug\netcoreapp2.1\JwtCore.deps.json
+C:\Users\dev\sistemas\CadastroPessoal\JwtCore\bin\Debug\netcoreapp2.1\JwtCore.runtimeconfig.json
+C:\Users\dev\sistemas\CadastroPessoal\JwtCore\bin\Debug\netcoreapp2.1\JwtCore.runtimeconfig.dev.json
+C:\Users\dev\sistemas\CadastroPessoal\JwtCore\bin\Debug\netcoreapp2.1\JwtCore.dll
+C:\Users\dev\sistemas\CadastroPessoal\JwtCore\bin\Debug\netcoreapp2.1\JwtCore.pdb
+C:\Users\dev\sistemas\CadastroPessoal\JwtCore\obj\Debug\netcoreapp2.1\JwtCore.csprojAssemblyReference.cache
+C:\Users\dev\sistemas\CadastroPessoal\JwtCore\obj\Debug\netcoreapp2.1\JwtCore.csproj.CoreCompileInputs.cache
+C:\Users\dev\sistemas\CadastroPessoal\JwtCore\obj\Debug\netcoreapp2.1\JwtCore.AssemblyInfoInputs.cache
+C:\Users\dev\sistemas\CadastroPessoal\JwtCore\obj\Debug\netcoreapp2.1\JwtCore.AssemblyInfo.cs
+C:\Users\dev\sistemas\CadastroPessoal\JwtCore\obj\Debug\netcoreapp2.1\JwtCore.dll
+C:\Users\dev\sistemas\CadastroPessoal\JwtCore\obj\Debug\netcoreapp2.1\JwtCore.pdb

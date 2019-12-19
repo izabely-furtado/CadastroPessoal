@@ -15177,11 +15177,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\dev\\sistemas\\Cadastro_Pessoal\\ApiCliente\\ApiCliente.csproj",
+      "projectUniqueName": "C:\\Users\\dev\\sistemas\\CadastroPessoal\\ApiCliente\\ApiCliente.csproj",
       "projectName": "ApiCliente",
-      "projectPath": "C:\\Users\\dev\\sistemas\\Cadastro_Pessoal\\ApiCliente\\ApiCliente.csproj",
+      "projectPath": "C:\\Users\\dev\\sistemas\\CadastroPessoal\\ApiCliente\\ApiCliente.csproj",
       "packagesPath": "C:\\Users\\dev\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\dev\\sistemas\\Cadastro_Pessoal\\ApiCliente\\obj\\",
+      "outputPath": "C:\\Users\\dev\\sistemas\\CadastroPessoal\\ApiCliente\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -15200,11 +15200,11 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-            "C:\\Users\\dev\\sistemas\\Cadastro_Pessoal\\CadastroPessoa\\CadastroPessoa.csproj": {
-              "projectPath": "C:\\Users\\dev\\sistemas\\Cadastro_Pessoal\\CadastroPessoa\\CadastroPessoa.csproj"
+            "C:\\Users\\dev\\sistemas\\CadastroPessoal\\CadastroPessoa\\CadastroPessoa.csproj": {
+              "projectPath": "C:\\Users\\dev\\sistemas\\CadastroPessoal\\CadastroPessoa\\CadastroPessoa.csproj"
             },
-            "C:\\Users\\dev\\sistemas\\Cadastro_Pessoal\\JwtCore\\JwtCore.csproj": {
-              "projectPath": "C:\\Users\\dev\\sistemas\\Cadastro_Pessoal\\JwtCore\\JwtCore.csproj"
+            "C:\\Users\\dev\\sistemas\\CadastroPessoal\\JwtCore\\JwtCore.csproj": {
+              "projectPath": "C:\\Users\\dev\\sistemas\\CadastroPessoal\\JwtCore\\JwtCore.csproj"
             }
           }
         }

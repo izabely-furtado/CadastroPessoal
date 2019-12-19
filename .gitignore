@@ -9,3 +9,7 @@
 /WebCliente/bin/Debug/netcoreapp2.1
 /JwtCore/bin/Debug/netcoreapp2.1
 /CadastroPessoa/bin/Debug/netcoreapp2.1
+/ApiCliente/bin/Release/netcoreapp2.1
+/WebCliente/bin/Release/netcoreapp2.1
+/JwtCore/bin/Release/netcoreapp2.1
+/CadastroPessoa/bin/Release/netcoreapp2.1
